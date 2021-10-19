@@ -18,7 +18,7 @@
 
   <div class='navbar'>
     <div class="dropdown">
-      <button style="color:yellow" class="dropbtn">Depposits
+      <button style="color:yellow" class="dropbtn">Deposits
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
@@ -29,7 +29,7 @@
     </div>
 
     <div class="dropdown">
-      <button style="color:yellow" class="dropbtn">Expenssses
+      <button style="color:yellow" class="dropbtn">Expenses
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
