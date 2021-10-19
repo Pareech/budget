@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
-<link rel='stylesheet' type='text/css' href='css/index.css' />
+<link rel='stylesheet' type='text/css' href='../css/navbar.css' />
 
 <title>Investments</title>
 
 
 <!-- Navigation Bar -->
-
-
-
-<div class='header' ;>
-  <h1>Budget</br>Overview</h1>
-</div>
-
 
 <div class='navbar'>
   <div class="dropdown">
@@ -21,7 +14,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href='deposits/salary_deposit.php'>Salary</a>
+      <a href='../deposits/salary_deposit.php'>Salary</a>
       <a href=''>Other</a>
     </div>
   </div>
@@ -36,4 +29,5 @@
       <a href=''>Utilities</a>
     </div>
   </div>
+  <a style="color:white" ; href='../index.php'>Main Page</a>
 </div>
