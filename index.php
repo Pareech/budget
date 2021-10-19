@@ -18,7 +18,7 @@
 
   <div class='navbar'>
     <div class="dropdown">
-      <button style="color:yellow" class="dropbtn">Deposits
+      <button style="color:yellow" class="dropbtn">Depposits
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
