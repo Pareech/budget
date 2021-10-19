@@ -29,7 +29,7 @@
     </div>
 
     <div class="dropdown">
-      <button style="color:yellow" class="dropbtn">Expenses
+      <button style="color:yellow" class="dropbtn">Expenssses
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
