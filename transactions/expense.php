@@ -5,11 +5,11 @@ include '../db_connections/connection_pdo.php';
 ?>
 
 <meta http-equiv="Content-Type" content="text/html;" />
-<link rel='stylesheet' type='text/css' href='../css/deposit.css' />
+<link rel='stylesheet' type='text/css' href='../css/expense.css' />
 <title>Salary</title>
 
 <div class='header'>
-    <h1>Enter Deposit<br>Information</h1>
+    <h1>Enter Expense<br>Information</h1>
 </div>
 
 <?php

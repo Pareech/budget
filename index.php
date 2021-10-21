@@ -15,7 +15,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href='deposits/deposit.php'>Salary</a>
+      <a href='transactions/deposit.php'>Salary</a>
       <a href=''>Other</a>
     </div>
   </div>
