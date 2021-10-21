@@ -2,19 +2,16 @@
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
 <link rel='stylesheet' type='text/css' href='../css/navbar.css' />
-
-<title>Investments</title>
-
+<title>Investments Navigation Bar</title>
 
 <!-- Navigation Bar -->
-
 <div class='navbar'>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Depositss
+    <button style="color:yellow" class="dropbtn">Deposits
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href='../deposits/salary_deposit.php'>Salary</a>
+      <a href='../deposits/deposit.php'>Salary</a>
       <a href=''>Other</a>
     </div>
   </div>
