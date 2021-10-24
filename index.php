@@ -34,4 +34,13 @@
       <a href='transactions/expense.php?exp=Utilities'>Utilities</a>
     </div>
   </div>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Add Transaction / Info
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href=''>Add Credit Card</a>
+      <a href=''>Add Expense</a>
+    </div>
+  </div>
 </div>
