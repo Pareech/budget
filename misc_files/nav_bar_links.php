@@ -31,9 +31,13 @@
     </div>
   </div>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Add Transaction / Info
-      <i class="fa fa-caret-down"></i>
-    </button>
+    <button style="color:yellow" class="dropbtn">Monthly Entries</button>
+    <div class="dropdown-content">
+      <a href='../transactions/cc_monthlies.php'>Credit Cards</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Add Expense Type</button>
     <div class="dropdown-content">
       <a href=''>Add Credit Card</a>
       <a href=''>Add Expense</a>
