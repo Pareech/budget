@@ -11,9 +11,7 @@
 <!-- Navigation Bar -->
 <div class='navbar'>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Income
-      <i class="fa fa-caret-down"></i>
-    </button>
+    <button style="color:yellow" class="dropbtn">Income</button>
     <div class="dropdown-content">
       <a href='transactions/deposit.php'>Deposit</a>
       <a href=''>Other</a>
@@ -21,9 +19,7 @@
   </div>
 
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Expenses
-      <i class="fa fa-caret-down"></i>
-    </button>
+    <button style="color:yellow" class="dropbtn">Expenses</button>
     <div class="dropdown-content">
       <a href='transactions/expense.php?exp=Groceries'>Groceries</a>
       <a href='transactions/expense.php?exp=Housing'>Housing</a>
@@ -35,9 +31,13 @@
     </div>
   </div>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Add Transaction / Info
-      <i class="fa fa-caret-down"></i>
-    </button>
+    <button style="color:yellow" class="dropbtn">Monthly Entries</button>
+    <div class="dropdown-content">
+      <a href='transactions/cc_monthlies.php'>Credit Cards</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Add Expense Type</button>
     <div class="dropdown-content">
       <a href=''>Add Credit Card</a>
       <a href=''>Add Expense</a>
