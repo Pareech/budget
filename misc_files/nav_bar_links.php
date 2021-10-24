@@ -7,11 +7,11 @@
 <!-- Navigation Bar -->
 <div class='navbar'>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Deposits
+    <button style="color:yellow" class="dropbtn">Income
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href='../transactions/deposit.php'>Salary</a>
+      <a href='../transactions/deposit.php'>Deposits</a>
       <a href=''>Other</a>
     </div>
   </div>
