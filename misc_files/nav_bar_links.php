@@ -11,7 +11,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href='../deposits/deposit.php'>Salary</a>
+      <a href='../transactions/deposit.php'>Salary</a>
       <a href=''>Other</a>
     </div>
   </div>
@@ -21,9 +21,13 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href=''>Fixed Expenses</a>
-      <a href=''>Misc. Expenses</a>
-      <a href=''>Utilities</a>
+      <a href='../transactions/expense.php?exp=Groceries'>Groceries</a>
+      <a href='../transactions/expense.php?exp=Housing'>Housing</a>
+      <a href='../transactions/expense.php?exp=Leisure'>Leisure</a>
+      <a href='../transactions/expense.php?exp=Loan'>Loans</a>
+      <a href='../transactions/expense.php?exp=Other'>Misc. Expenses</a>
+      <a href='../transactions/expense.php?exp=Transportation'>Transportation</a>
+      <a href='../transactions/expense.php?exp=Utilities'>Utilities</a>
     </div>
   </div>
   <a style="color:white" ; href='../index.php'>Main Page</a>
