@@ -19,24 +19,12 @@ include '../misc_files/nav_bar_links.php';
 
 $choose_expense = $pdo->prepare("SELECT expense_name FROM expense_listing WHERE expense_category = :exp_cat ORDER BY expense_name;");
 $choose_expense->execute(['exp_cat' => $category]);
-
 ?>
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item1a">
+        <div class="item1">
             <h2>Select Expense</h2>
-        </div>
-        <div class="item2a">
-            <h2>Amount</h2>
-        </div>
-        <div class="item3a">
-            <h2>Date</h2>
-        </div>
-        <div class="item4a">
-            <h2>Note</h2>
-        </div>
-        <div class="item1b">
             <select name="expense" value='' class=dropmenus></option>
                 <option value=""></option>
                 <?php
@@ -46,15 +34,25 @@ $choose_expense->execute(['exp_cat' => $category]);
                 ?>
             </select>
         </div>
-
-        <div class="item2b"><input id="textboxid" name="cost" placeholder="Expense Amount" type="text" /></div>
-        <div class="item3b"><input type="date" id="textboxid" name="date" /></div>
-        <div class="item4b"><input type="text" id="textboxid" name="note" /></div>
-        <div class="item5"><button type="submit" id="transaction_button" name="submit_expense" class="button" value="submit">Submit<br>Expense</button></div>
+        <div class="item2">
+            <h2>Amount</h2>
+            <input id="textboxid" name="cost" placeholder="Expense Amount" type="text" />
+        </div>
+        <div class="item3">
+            <h2>Date</h2>
+            <input type="date" id="textboxid" name="date" />
+        </div>
+        <div class="item4">
+            <h2>Note</h2>
+            <input type="text" id="textboxid" name="note" />
+        </div>
+        <div class="item5">
+            <button type="submit" id="transaction_button" name="submit_expense" class="button" value="submit">Submit<br>Expense</button>
+        </div>
     </div>
 </form>
 
-<!-- Enter expense into the databse -->
+<!-- Enter Expense into the Databse -->
 <?php
 if (isset($_POST['submit_expense'])) {
 

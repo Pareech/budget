@@ -16,34 +16,35 @@ include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
 ?>
 
-
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item1a">
+        <div class="item1">
             <h2>Who</h2>
+            <input id="textboxid" name="who" placeholder="Depositor" type="text" />
         </div>
-        <div class="item2a">
+        <div class="item2">
             <h2>Amount</h2>
+            <input id="textboxid" name="deposit" placeholder="Deposit Amount" type="text" />
         </div>
-        <div class="item3a">
+        <div class="item3">
             <h2>Type</h2>
+            <input id="textboxid" name="note" placeholder="eg. Salary" type="text" />
         </div>
         <div class="item4a">
             <h2>Date</h2>
+            <input type="date" id="textboxid" name="date" />
         </div>
-        <div class="item1b"><center><input id="textboxid" name="who" placeholder="Depositor" type="text" /></center></div>
-        <div class="item2b"><center><input id="textboxid" name="salary" placeholder="Deposit Amount" type="text" /></center></div>
-        <div class="item3b"><center><input id="textboxid" name="note" placeholder="eg. Salary" type="text" /></center></div>
-        <div class="item4b"><center><input type="date" id="textboxid" name="date" /></center></div>
-        <div class="item5"> <button type="submit" id="transaction_button" name="submit_deposit" class="button" value="submit">Submit<br>Deposit</button></div>
+        <div class="item5">
+            <button type="submit" id="transaction_button" name="submit_deposit" class="button" value="submit">Submit<br>Deposit</button>
+        </div>
     </div>
 </form>
 
-
+<!-- Enter Income into the Databse -->
 <?php
 if (isset($_POST['submit_deposit'])) {
 
-    $required = array('salary', 'who', 'date', 'note');
+    $required = array('who', 'deposit', 'note', 'date');
 
     $error = false;
     foreach ($required as $field) {
@@ -59,14 +60,20 @@ if (isset($_POST['submit_deposit'])) {
         </script>";
     } else {
 
-        $salary = $_POST['salary'];
         $depositor = $_POST['who'];
-        $date = $_POST['date'];
+        $deposit_amt = $_POST['deposit'];
         $note = $_POST['note'];
+        $date = $_POST['date'];
+
+        // echo $depositor."<br>";
+        // echo $deposit."<br>";
+        // echo $note."<br>";
+        // echo $date."<br>";
+        // exit();
 
         $deposit = $pdo->prepare("INSERT INTO income (deposit_amount, depositor, deposit_date, note)
-                          VALUES (:salary_amount, :depositor, :deposit_date, :deposit_type);");
-        $deposit->execute(['salary_amount' => $salary, 'depositor' => $depositor, 'deposit_date' => $date, 'deposit_type' => $note]);
+                          VALUES (:deposit_amt, :depositor, :deposit_date, :deposit_type);");
+        $deposit->execute(['deposit_amt' => $deposit_amt, 'depositor' => $depositor, 'deposit_date' => $date, 'deposit_type' => $note]);
 
         header("Location: ..");
     }
