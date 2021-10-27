@@ -45,3 +45,10 @@
   </div>
   <a style="color:white" ; href='../index.php'>Main Page</a>
 </div>
+
+<?php
+  include '../db_connections/connection_pdo.php';
+  if ($dbname == 'budget_dev') {
+    echo "On Dev Environment";
+  }
+?>

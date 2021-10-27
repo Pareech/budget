@@ -44,3 +44,10 @@
     </div>
   </div>
 </div>
+
+<?php
+  include 'db_connections/connection_pdo.php';
+  if ($dbname == 'budget_dev') {
+    echo "On Dev Environment";
+  }
+?>
