@@ -23,19 +23,8 @@ $cc_charges->execute();
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item1a">
+        <div class="item1">
             <h2>Select Credit Card</h2>
-        </div>
-        <div class="item2a">
-            <h2>Amount</h2>
-        </div>
-        <div class="item3a">
-            <h2>Date</h2>
-        </div>
-        <div class="item4a">
-            <h2>Note</h2>
-        </div>
-        <div class="item1b">
             <select name="card" value='' class=dropmenus></option>
                 <option value=""></option>
                 <?php
@@ -45,15 +34,25 @@ $cc_charges->execute();
                 ?>
             </select>
         </div>
-
-        <div class="item2b"><input id="textboxid" name="cost" placeholder="Monthly Charge" type="text" /></div>
-        <div class="item3b"><input type="date" id="textboxid" name="date" /></div>
-        <div class="item4b"><input type="text" id="textboxid" name="note" /></div>
-        <div class="item5"><button type="submit" id="transaction_button" name="submit_charge" class="button" value="submit">Submit<br>Charge</button></div>
+        <div class="item2">
+            <h2>Amount</h2>
+            <input id="textboxid" name="cost" placeholder="Monthly Charge" type="text" />
+        </div>
+        <div class="item3">
+            <h2>Date</h2>
+            <input type="date" id="textboxid" name="date" />
+        </div>
+        <div class="item4">
+            <h2>Note</h2>
+            <input type="text" id="textboxid" name="note" />
+        </div>
+        <div class="item5">
+            <button type="submit" id="transaction_button" name="submit_charge" class="button" value="submit">Submit<br>Charge</button>
+        </div>
     </div>
 </form>
 
-<!-- Enter Monthly CC Charge into the databse -->
+<!-- Enter Monthly CC Charge into the Databse -->
 <?php
 if (isset($_POST['submit_charge'])) {
 
