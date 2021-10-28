@@ -30,7 +30,7 @@ include '../misc_files/nav_bar_links.php';
             <h2>Type</h2>
             <input id="textboxid" name="note" placeholder="eg. Salary" type="text" />
         </div>
-        <div class="item4a">
+        <div class="item4">
             <h2>Date</h2>
             <input type="date" id="textboxid" name="date" />
         </div>
@@ -40,7 +40,7 @@ include '../misc_files/nav_bar_links.php';
     </div>
 </form>
 
-<!-- Enter Income into the Databse -->
+<!-- Enter Income into the Database -->
 <?php
 if (isset($_POST['submit_deposit'])) {
 
@@ -65,14 +65,8 @@ if (isset($_POST['submit_deposit'])) {
         $note = $_POST['note'];
         $date = $_POST['date'];
 
-        // echo $depositor."<br>";
-        // echo $deposit."<br>";
-        // echo $note."<br>";
-        // echo $date."<br>";
-        // exit();
-
         $deposit = $pdo->prepare("INSERT INTO income (deposit_amount, depositor, deposit_date, note)
-                          VALUES (:deposit_amt, :depositor, :deposit_date, :deposit_type);");
+                                  VALUES (:deposit_amt, :depositor, :deposit_date, :deposit_type);");
         $deposit->execute(['deposit_amt' => $deposit_amt, 'depositor' => $depositor, 'deposit_date' => $date, 'deposit_type' => $note]);
 
         header("Location: ..");

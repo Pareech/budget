@@ -24,8 +24,8 @@ $choose_expense->execute(['exp_cat' => $category]);
 <form name="display" action="" method="POST">
     <div class="grid-container">
         <div class="item1">
-            <h2>Select Expense</h2>
-            <select name="expense" value='' class=dropmenus></option>
+            <h2>Expense</h2>
+            <select id="textboxid" name="expense" value='' class=dropmenus></option>
                 <option value=""></option>
                 <?php
                 foreach ($choose_expense as $row) {
@@ -52,7 +52,7 @@ $choose_expense->execute(['exp_cat' => $category]);
     </div>
 </form>
 
-<!-- Enter Expense into the Databse -->
+<!-- Enter Expense into the Database -->
 <?php
 if (isset($_POST['submit_expense'])) {
 
