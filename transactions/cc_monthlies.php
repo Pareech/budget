@@ -24,8 +24,8 @@ $cc_charges->execute();
 <form name="display" action="" method="POST">
     <div class="grid-container">
         <div class="item1">
-            <h2>Select Credit Card</h2>
-            <select name="card" value='' class=dropmenus></option>
+            <h2>Credit Card</h2>
+            <select id="textboxid" name="card" value='' class=dropmenus></option>
                 <option value=""></option>
                 <?php
                 foreach ($cc_charges as $row) {
@@ -52,7 +52,7 @@ $cc_charges->execute();
     </div>
 </form>
 
-<!-- Enter Monthly CC Charge into the Databse -->
+<!-- Enter Monthly CC Charge into the Database -->
 <?php
 if (isset($_POST['submit_charge'])) {
 
