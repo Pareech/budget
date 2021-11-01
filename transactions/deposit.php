@@ -18,23 +18,23 @@ include '../misc_files/nav_bar_links.php';
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item1">
+        <div class="item">
             <h2>Who</h2>
             <input id="textboxid" name="who" placeholder="Depositor" type="text" />
         </div>
-        <div class="item2">
+        <div class="item">
             <h2>Amount</h2>
             <input id="textboxid" name="deposit" placeholder="Deposit Amount" type="text" />
         </div>
-        <div class="item3">
+        <div class="item">
             <h2>Type</h2>
             <input id="textboxid" name="note" placeholder="eg. Salary" type="text" />
         </div>
-        <div class="item4">
+        <div class="item">
             <h2>Date</h2>
             <input type="date" id="textboxid" name="date" />
         </div>
-        <div class="item5">
+        <div class="item">
             <button type="submit" id="transaction_button" name="submit_deposit" class="button" value="submit">Submit<br>Deposit</button>
         </div>
     </div>
