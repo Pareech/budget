@@ -23,7 +23,7 @@ $cc_charges->execute();
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item1">
+        <div class="item">
             <h2>Credit Card</h2>
             <select id="textboxid" name="card" value='' class=dropmenus></option>
                 <option value=""></option>
@@ -34,19 +34,19 @@ $cc_charges->execute();
                 ?>
             </select>
         </div>
-        <div class="item2">
+        <div class="item">
             <h2>Amount</h2>
             <input id="textboxid" name="cost" placeholder="Monthly Charge" type="text" />
         </div>
-        <div class="item3">
+        <div class="item">
             <h2>Date</h2>
             <input type="date" id="textboxid" name="date" />
         </div>
-        <div class="item4">
+        <div class="item">
             <h2>Note</h2>
             <input type="text" id="textboxid" name="note" />
         </div>
-        <div class="item5">
+        <div class="item">
             <button type="submit" id="transaction_button" name="submit_charge" class="button" value="submit">Submit<br>Charge</button>
         </div>
     </div>
