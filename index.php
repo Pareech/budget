@@ -48,6 +48,9 @@
 <?php
   include 'db_connections/connection_pdo.php';
   if ($dbname == 'budget_dev') {
-    echo "On Dev Environment";
+    echo "On Dev Environment<br><br>";
   }
+
+include 'finance_details/totals.php';
+
 ?>

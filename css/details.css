@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: lightgrey;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 2px;
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* .dropmenus {
+  width:120px; 
+  height:25px;
+} */
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(auto-fill, 35px);
+  grid-row-gap: .5em;
+  grid-column-gap: 1em;
+  background-color: lightgrey;
+
+}
+
+.grid-container > div {
+  text-align: center;
+}
+
+/* #textboxid
+{
+  height:25px;
+  text-align: center;
+  border: 0px none;
+  width: 150px;
+} */
+
+/* #transaction_button
+{
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  height: 50px; 
+  width:150px;
+  margin-bottom: 20px;
+} */
