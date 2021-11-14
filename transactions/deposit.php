@@ -35,6 +35,7 @@ include '../misc_files/nav_bar_links.php';
             <input type="date" id="textboxid" name="date" />
         </div>
         <div class="item">
+            <br><br><br>
             <button type="submit" id="transaction_button" name="submit_deposit" class="button" value="submit">Submit<br>Deposit</button>
         </div>
     </div>
