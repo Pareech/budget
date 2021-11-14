@@ -9,6 +9,7 @@ include '../db_connections/connection_pdo.php';
 <title>Enter Expenses</title>
 
 <?php
+
 $category = $_GET['exp'];
 
 echo "<div class='header'>
@@ -17,8 +18,12 @@ echo "<div class='header'>
 
 include '../misc_files/nav_bar_links.php';
 
-$choose_expense = $pdo->prepare("SELECT expense_name FROM expense_listing WHERE expense_category = :exp_cat ORDER BY expense_name;");
+$choose_expense = $pdo->prepare("SELECT expense_name FROM expense_categories WHERE expense_category = :exp_cat ORDER BY expense_name;");
 $choose_expense->execute(['exp_cat' => $category]);
+
+$cc_charges = $pdo->prepare("SELECT how_paid FROM payment_method ORDER BY how_paid;");
+$cc_charges->execute();
+
 ?>
 
 <form name="display" action="" method="POST">
@@ -30,6 +35,17 @@ $choose_expense->execute(['exp_cat' => $category]);
                 <?php
                 foreach ($choose_expense as $row) {
                     echo "<option value='$row[expense_name]'>$row[expense_name]</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div class="item">
+            <h2>Credit Card</h2>
+            <select id="textboxid" name="card" value='' class=dropmenus></option>
+                <option value=""></option>
+                <?php
+                foreach ($cc_charges as $row) {
+                    echo "<option value='$row[how_paid]'>$row[how_paid]</option>";
                 }
                 ?>
             </select>
@@ -47,6 +63,7 @@ $choose_expense->execute(['exp_cat' => $category]);
             <input type="text" id="textboxid" name="note" />
         </div>
         <div class="item">
+            <br><br><br>
             <button type="submit" id="transaction_button" name="submit_expense" class="button" value="submit">Submit<br>Expense</button>
         </div>
     </div>
@@ -68,25 +85,32 @@ if (isset($_POST['submit_expense'])) {
     if ($error) {
         echo
         "<script>
-            alert('All fields are required, except for Notes.');
+            alert('All fields are required, except for Credit Card and Notes.');
         </script>";
     } else {
         $expense = $_POST['expense'];
+        $card_used = $_POST['card'];
         $cost = $_POST['cost'];
         $date = $_POST['date'];
         $note = $_POST['note'];
 
-        $get_details = $pdo->prepare("SELECT expense_name, expense_type FROM expense_listing WHERE expense_name = :expense_name;");
+        if ($note == '') {
+            $note = NULL;
+        }
+
+        // Get the Type of Expense Being Entered
+        $get_details = $pdo->prepare("SELECT expense_type FROM expense_categories WHERE expense_name = :expense_name;");
         $get_details->execute(['expense_name' => $expense]);
         foreach ($get_details as $row) {
             $type = $row['expense_type'];
         }
 
-        $spend = $pdo->prepare("INSERT INTO expenses (item_purchased, amount, category, kind, purchase_date, note)
-                                VALUES (:item_purchased, :cost, :category, :kind, :expense_date, :note);");
-        $spend->execute(['item_purchased' => $expense, 'cost' => $cost, 'category' => $category, 'kind' => $type, 'expense_date' => $date, 'note' => $note]);
+        $spend = $pdo->prepare("INSERT INTO expenses (item_purchased, amount, category, kind, paid_by, purchase_date, note)
+                                VALUES (:item_purchased, :cost, :category, :kind, :cc, :expense_date, :note);");
+        $spend->execute(['item_purchased' => $expense, 'cost' => $cost, 'category' => $category, 'kind' => $type, 'cc' => $card_used, 'expense_date' => $date, 'note' => $note]);
 
-        header("Location: ..");
+        echo "<script> window.location.href='../index.php'</script>";
+
     }
 }
 ?>
