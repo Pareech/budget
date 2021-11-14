@@ -12,7 +12,8 @@
     </button>
     <div class="dropdown-content">
       <a href='../transactions/deposit.php'>Deposits</a>
-      <a href=''>Other</a>
+      <a href='../finance_details/totals.php'>Recent Deposits</a>
+
     </div>
   </div>
 
@@ -33,7 +34,7 @@
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Monthly Entries</button>
     <div class="dropdown-content">
-      <a href='../transactions/cc_monthlies.php'>Credit Cards</a>
+      <a href=''>Credit Cards</a>
     </div>
   </div>
   <div class="dropdown">
@@ -49,6 +50,6 @@
 <?php
   include '../db_connections/connection_pdo.php';
   if ($dbname == 'budget_dev') {
-    echo "On Dev Environment";
+    echo "On Dev Environment<br><br>";
   }
 ?>
