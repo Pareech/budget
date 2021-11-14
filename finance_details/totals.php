@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
-<link rel='stylesheet' type='text/css' href='css/details.css' />
+<link rel='stylesheet' type='text/css' href='../css/details.css' />
 <title>Budget</title>
 
-<!-- <div class='header' ;>
-  <h1>Budget</br>Overview</h1>
-</div> -->
+<div class='header' ;>
+    <h1>Monthly</br>Deposits</h1>
+</div>
 
 <?php
 
+include '../db_connections/connection_pdo.php';
+include '../misc_files/nav_bar_links.php';
 
 $monthly_income = $pdo->prepare("SELECT
                                     DATE_TRUNC('month',deposit_date)
@@ -26,7 +28,7 @@ $totalArray = array();
 
 
 foreach ($monthly_income as $row) {
-    $month =  date('F-Y', strtotime($row['deposit_month']));
+    $month =  date('F', strtotime($row['deposit_month']));
     $monthlyTotal = $row['monthly_total'];
 
     array_push($monthArray, $month);
@@ -39,7 +41,7 @@ $elements = count($monthArray);
 <div class="grid-container">
     <?php
     for ($i = 0; $i < $elements; $i++) {
-        echo 
+        echo
         "<div class='item'>
             $monthArray[$i]
         </div>";
@@ -53,10 +55,45 @@ $elements = count($monthArray);
         $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
         $net_deposits = $money->formatCurrency($totalArray[$i], 'USD');
 
-        echo 
+        echo
         "<div class='item'>
             $net_deposits
         </div>";
     }
     ?>
 </div>
+
+<center><h2>Last 15 Deposits</h2></center>
+
+<?php
+$last_deposits = $pdo->prepare("SELECT deposit_amount, deposit_date, note 
+                                FROM (SELECT deposit_amount, deposit_date,note 
+                                      FROM income
+                                      ORDER BY deposit_date DESC
+                                      LIMIT 5) AS ordering
+                                ORDER BY deposit_date ASC;");
+$last_deposits->execute();
+?>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Note</th>
+    </tr>
+
+    <?php
+    foreach ($last_deposits as $row) {
+        $dep_amt = $row['deposit_amount'];
+        $dep_date = $row['deposit_date'];
+        $dep_note = $row['note'];
+
+        echo "<tr>";
+        echo "<td>" . $row['deposit_date'] . "</td>";
+        echo "<td> $" .$row['deposit_amount'] . "</td>";
+        echo "<td>" . $row['note'] . "</td>";
+        echo "</tr>";
+    }
+    ?>
+
+</table>
