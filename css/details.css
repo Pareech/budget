@@ -30,6 +30,7 @@ body {
 }
 
 .grid-container_avg {
+  padding-top: 66px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(auto-fill, auto);
   grid-row-gap: .9em;
