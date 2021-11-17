@@ -22,47 +22,31 @@ body {
   font-size: 40px;
 }
 
-/* .dropmenus {
-  width:120px; 
-  height:25px;
-} */
-
-.grid-container {
-  width: 100%;
-  display: grid;
+.grid-container_total {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(auto-fill, 22px);
   grid-row-gap: .5em;
   grid-column-gap: 1em;
-  background-color: lightgrey;
-  /* justify-items: center; */
 }
 
-.grid-container>div {
+.grid-container_avg {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fill, auto);
+  grid-row-gap: .9em;
+  grid-column-gap: 1em;
+}
+
+.grid-container_total>div, .grid-container_avg>div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   border: 1px solid #000;
-  /* padding: 20px 0; */
-
 }
 
-/* #textboxid
-{
-  height:25px;
-  text-align: center;
-  border: 0px none;
-  width: 150px;
-} */
-
-/* #transaction_button
-{
-  font-weight: bold;
-  text-align: center;
-  font-size: 16px;
-  height: 50px; 
-  width:150px;
-  margin-bottom: 20px;
-} */
+#grid_format {
+  width: 100%;
+  display: grid;
+  background-color: lightgrey;
+}
 
 table {
   margin-left: auto;
@@ -70,10 +54,16 @@ table {
   border: 2px solid black;
   border-collapse: collapse;
   table-layout: center;
-  width: 500px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
+}
 
+table.table_totals {
+  width: 500px;
+}
+
+table.table_avg {
+  width: 650px;
 }
 
 th {
