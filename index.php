@@ -46,40 +46,12 @@
 </div>
 
 <?php
+
 include 'db_connections/connection_pdo.php';
 if ($dbname == 'budget_dev') {
   echo "On Dev Environment<br><br>";
-
-  $get_avg = $pdo->prepare("SELECT item_purchased, round(avg(amount),2) AS avg_cost, category, kind
-                            FROM (SELECT item_purchased, amount, category, kind
-                                FROM expenses
-                                -- WHERE item_purchased = :exp_name
-                                ORDER BY purchase_date DESC
-                                -- LIMIT 12
-                                ) as monthly_cost
-                            GROUP BY item_purchased, category, kind
-                            ORDER BY category, kind, item_purchased;");
-  $get_avg->execute();
-
-  // $get_expense = $pdo->prepare("SELECT expense_name FROM expense_categories ORDER BY expense_type, expense_category, expense_name;");
-  // $get_expense->execute();
-  foreach ($get_avg as $row) {
-    $exp_name = $row['item_purchased'];
-    $month_avg = $row['avg_cost'];
-    $kind = $row['kind'];
-    // echo $exp_name . ': ' . $month_avg . ', ' . $kind . '<br><br>';
-  }
-
-
-  //   foreach ($get_expense as $row) {
-  //     $exp_name = $row['expense_name'];
-  //     $get_avg->execute(['exp_name' => $exp_name]);
-  //     while (($rows = $get_avg->fetch())) {
-  //       $month_avg = $rows['avg_cost'];
-  //       $kind = $rows['kind'];
-  //     }
-  //     echo $exp_name . ': ' . $month_avg . ', ' . $kind . '<br><br>';
-  //   }
 }
+
+include 'finance_details/averages.php';
 
 ?>
