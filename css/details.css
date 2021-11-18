@@ -68,7 +68,12 @@ table.table_avg {
 }
 
 th {
-  background: palegoldenrod;
+  background: rgba(112, 245, 156, 0.8);
+
+}
+
+th.heading {
+  background: rgba(84, 144, 235, 0.315);
 }
 
 th, td {
