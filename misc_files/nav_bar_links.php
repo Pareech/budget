@@ -44,7 +44,7 @@
       <a href=''>Add Expense</a>
     </div>
   </div>
-  <a style="color:white" ; href='../index.php'>Main Page</a>
+  <a style="color:white"; text-decoration="none"; href='../index.php'>Main Page</a>
 </div>
 
 <?php

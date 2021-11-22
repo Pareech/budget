@@ -67,6 +67,11 @@ body {
   background-color: red;
 }
 
+/* Remove Underline Links from NavBar */
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
