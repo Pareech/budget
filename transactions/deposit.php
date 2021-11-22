@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 
-<?php
-include '../db_connections/connection_pdo.php';
-?>
-
 <meta http-equiv="Content-Type" content="text/html;" />
 <link rel='stylesheet' type='text/css' href='../css/transaction.css' />
 <title>Salary</title>
@@ -13,6 +9,7 @@ include '../db_connections/connection_pdo.php';
 </div>
 
 <?php
+include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
 ?>
 

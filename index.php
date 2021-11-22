@@ -30,6 +30,7 @@
       <a href='transactions/expense.php?exp=Utilities'>Utilities</a>
     </div>
   </div>
+  <a href='finance_details/projections.php'>Budget Projections</a>
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Monthly Entries</button>
     <div class="dropdown-content">
