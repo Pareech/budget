@@ -12,8 +12,6 @@
     </button>
     <div class="dropdown-content">
       <a href='../transactions/deposit.php'>Deposits</a>
-      <a href='../finance_details/totals.php'>Recent Deposits</a>
-
     </div>
   </div>
 
@@ -32,6 +30,13 @@
     </div>
   </div>
   <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Budget Projections</button>
+    <div class="dropdown-content">
+      <a href='../finance_details/projections.php'>Enter a Projection</a>
+      <a href='../finance_details/monthly_projection.php'>Monthly Projection</a>
+    </div>
+  </div>
+  <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Monthly Entries</button>
     <div class="dropdown-content">
       <a href=''>Credit Cards</a>
@@ -44,12 +49,21 @@
       <a href=''>Add Expense</a>
     </div>
   </div>
-  <a style="color:white"; text-decoration="none"; href='../index.php'>Main Page</a>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Transactions</button>
+    <div class="dropdown-content">
+      <a href='../finance_details/recent_transactions.php'>Deposits / Expenses</a>
+      <a href='../finance_details/recent_deposits.php'>Last 10 Deposits</a>
+      <a href='../finance_details/recent_expenses.php'>Last 10 Expenses</a>
+      <a href=''>Next 10 Expenses</a>
+    </div>
+  </div>
+  <a style="color:white" ; text-decoration="none" ; href='../index.php'>Main Page</a>
 </div>
 
 <?php
-  include '../db_connections/connection_pdo.php';
-  if ($dbname == 'budget_dev') {
-    echo "On Dev Environment<br><br>";
-  }
+include '../db_connections/connection_pdo.php';
+if ($dbname == 'budget_dev') {
+  echo "On Dev Environment<br><br>";
+}
 ?>
