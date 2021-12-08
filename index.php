@@ -14,7 +14,6 @@
     <button style="color:yellow" class="dropbtn">Income</button>
     <div class="dropdown-content">
       <a href='transactions/deposit.php'>Deposit</a>
-      <a href='finance_details/totals.php'>Recent Deposits</a>
     </div>
   </div>
 
@@ -30,7 +29,13 @@
       <a href='transactions/expense.php?exp=Utilities'>Utilities</a>
     </div>
   </div>
-  <a href='finance_details/projections.php'>Budget Projections</a>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Budget Projections</button>
+    <div class="dropdown-content">
+      <a href='finance_details/projections.php'>Enter a Projection</a>
+      <a href='finance_details/monthly_projection.php'>Monthly Projection</a>
+    </div>
+  </div>
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Monthly Entries</button>
     <div class="dropdown-content">
@@ -42,6 +47,15 @@
     <div class="dropdown-content">
       <a href=''>Add Credit Card</a>
       <a href=''>Add Expense</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Transactions</button>
+    <div class="dropdown-content">
+      <a href='finance_details/recent_transactions.php'>Last 10 Transactions</a>
+      <a href='finance_details/recent_deposits.php'>Last 10 Deposits</a>
+      <a href='finance_details/recent_expenses.php'>Next 10 Transactions</a>
+      <a href=''>Next 10 Expenses</a>
     </div>
   </div>
 </div>
