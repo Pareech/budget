@@ -32,7 +32,7 @@ $payment_method->execute();
             <input id="textboxid" name="amount" placeholder="amount" type="text" />
         </div>
         <div class="item">
-            <h2>Payment Used*</h2>
+            <h2>Source*</h2>
             <select id="textboxid" name="payment_used" value='' class=dropmenus></option>
                 <option value=""></option>
                 <?php
@@ -40,6 +40,10 @@ $payment_method->execute();
                     echo "<option value='$row[how_paid]'>$row[how_paid]</option>";
                 }
                 ?>
+                <option>-------</option>
+                <option value='Ian Salary'>Ian Salary</option>
+                <option value='Isabelle Salary'>Isabelle Salary</option>
+                <option value='Tangerine Cashback'>Tangerine Cashback</option>
             </select>
         </div>
         <div class="item">
@@ -50,8 +54,12 @@ $payment_method->execute();
             <br><br><br>
             <button type="submit" id="transaction_button" name="submit_amount" class="button" value="submit">Submit<br>Action</button>
         </div>
+        <div class="item">
+        </div>
+        <div class = "item">
+            <h5>*Only for Bill Payments</h5>
+        </div>
     </div>
-    <h6>*Only for Bill Payments</h5>
 </form>
 
 
@@ -60,7 +68,7 @@ $payment_method->execute();
 <?php
 if (isset($_POST['submit_amount'])) {
 
-    $required = array('entry_type', 'amount', 'payment_used', 'date');
+    $required = array( 'amount', 'payment_used', 'date');
 
     $error = false;
     foreach ($required as $field) {
@@ -75,6 +83,19 @@ if (isset($_POST['submit_amount'])) {
             alert('All fields are required.');
         </script>";
     } else {
+
+        $payee = $_POST['payment_used'];
+        $payment_amount = $_POST['amount'];
+        $due_date = $_POST['date'];
+        
+        //Is it a projected income or expense
+        $entry_type = $_POST['entry_type'];
+        
+        if ($entry_type == 'payment') {
+            $payment_amount *=-1;
+        } else {
+            $entry_type = 'income';
+        }
 
         include 'projection_db.php';
     }
