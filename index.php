@@ -52,9 +52,9 @@
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Transactions</button>
     <div class="dropdown-content">
-      <a href='finance_details/recent_transactions.php'>Last 10 Transactions</a>
-      <a href='finance_details/recent_deposits.php'>Last 10 Deposits</a>
-      <a href='finance_details/recent_expenses.php'>Next 10 Transactions</a>
+      <a href='transactions/recent_transactions.php'>Last 10 Transactions</a>
+      <a href='transactions/recent_deposits.php'>Last 10 Deposits</a>
+      <a href='transactions/recent_expenses.php'>Next 10 Transactions</a>
       <a href=''>Next 10 Expenses</a>
     </div>
   </div>
