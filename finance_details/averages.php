@@ -18,15 +18,7 @@
 
     function getTotals($pdo, $type)
     {
-        $get_avg = $pdo->prepare("SELECT item_purchased
-                                    FROM (SELECT item_purchased, DATE_TRUNC('month',purchase_date) AS buy_month, sum(amount) AS month_spend
-                                          FROM expenses
-                                          WHERE purchase_date >= CURRENT_DATE - INTERVAL '1 year' AND purchase_date <= CURRENT_DATE AND kind = :expkind
-                                          GROUP BY item_purchased, kind, purchase_date
-                                          ORDER BY buy_month) AS monthly_average
-                                    GROUP BY item_purchased
-                                    ORDER BY item_purchased;");
-        $get_avg->execute(['expkind' => $type]);
+        include 'averages_calc.php';
     ?>
 
         <table class="table_avg">
@@ -60,13 +52,13 @@
                 $frequency = $rows['payment_frequency'];
             }
 
-            if ($frequency == 1 or $frequency == 4 or $type == 'Variable') {
+            if ($frequency == 1 OR $frequency == 4 OR $type == 'Variable') {
                 $monthly = $year_total / 12;
                 $bimonthly = $year_total / 12 / 2;
             } elseif ($frequency == 6) {
                 $monthly = $year_total / $numb_payments / 2;
                 $bimonthly = $year_total / $numb_payments / 4;
-            } elseif ($frequency == 12) {
+            } elseif ($frequency == 12 OR $frequency == 24) {
                 $monthly = $year_total / $numb_payments;
                 $bimonthly = $year_total / $numb_payments / 2;
             } elseif ($frequency == 26) {

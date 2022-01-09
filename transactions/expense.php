@@ -88,11 +88,13 @@ if (isset($_POST['submit_expense'])) {
             alert('All fields are required, except for Credit Card and Notes.');
         </script>";
     } else {
-        $expense = $_POST['expense'];
+        $expense = $payee = $_POST['expense'];
         $card_used = $_POST['card'];
-        $cost = $_POST['cost'];
-        $date = $_POST['date'];
+        $payment_amount = $cost = $_POST['cost'];
+        $date = $due_date = $_POST['date'];
         $note = $_POST['note'];
+        $entry_type = 'payment';
+
 
         if ($note == '') {
             $note = NULL;
@@ -108,6 +110,8 @@ if (isset($_POST['submit_expense'])) {
         $spend = $pdo->prepare("INSERT INTO expenses (item_purchased, amount, category, kind, paid_by, purchase_date, note)
                                 VALUES (:item_purchased, :cost, :category, :kind, :cc, :expense_date, :note);");
         $spend->execute(['item_purchased' => $expense, 'cost' => $cost, 'category' => $category, 'kind' => $type, 'cc' => $card_used, 'expense_date' => $date, 'note' => $note]);
+
+        // include '../finance_details/projection_db.php';
 
         echo "<script> window.location.href='../index.php'</script>";
 

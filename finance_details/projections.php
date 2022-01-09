@@ -16,8 +16,6 @@ include '../misc_files/nav_bar_links.php';
 $payment_method = $pdo->prepare("SELECT how_paid FROM payment_method ORDER BY how_paid ASC;");
 $payment_method->execute();
 
-// $entry = '';
-
 ?>
 
 <form name="display" action="" method="POST">
