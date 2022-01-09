@@ -37,6 +37,13 @@ body {
   grid-column-gap: 1em;
 }
 
+.grid-container_predictions {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fill, auto);
+  grid-row-gap: .5em;
+  grid-column-gap: 1em;
+}
+
 .grid-container_total>div, .grid-container_avg>div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
@@ -45,6 +52,12 @@ body {
 
 #grid_format {
   width: 100%;
+  display: grid;
+  background-color: lightgrey;
+}
+
+#grid_format_projection {
+  width: 80%;
   display: grid;
   background-color: lightgrey;
 }
@@ -59,12 +72,16 @@ table {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+table.table_avg {
+  width: 650px;
+}
+
 table.table_totals {
   width: 500px;
 }
 
-table.table_avg {
-  width: 650px;
+table.table_predict {
+  width: 550px;
 }
 
 th {
@@ -79,4 +96,23 @@ th.heading {
 th, td {
   padding: 0.2rem;
   border: 2px solid black;
+}
+
+#textboxid
+{
+  height:25px;
+  text-align: center;
+  border: none;
+  width: 150px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#button_style
+{
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  height: 50px; 
+  width:110px;
+  margin-left: 200px;
 }
