@@ -58,16 +58,17 @@ if (isset($_POST['submit_deposit'])) {
         </script>";
     } else {
 
-        $depositor = $_POST['who'];
-        $deposit_amt = $_POST['deposit'];
+        $payee = $_POST['who'];
+        $payment_amount = $_POST['deposit'];
         $note = $_POST['note'];
-        $date = $_POST['date'];
+        $date = $due_date = $_POST['date'];
+        $entry_type = 'income';
 
         $deposit = $pdo->prepare("INSERT INTO income (deposit_amount, depositor, deposit_date, note)
                                   VALUES (:deposit_amt, :depositor, :deposit_date, :deposit_type);");
-        $deposit->execute(['deposit_amt' => $deposit_amt, 'depositor' => $depositor, 'deposit_date' => $date, 'deposit_type' => $note]);
+        $deposit->execute(['deposit_amt' => $payment_amount, 'depositor' => $payee, 'deposit_date' => $date, 'deposit_type' => $note]);
 
-        header("Location: ..");
+        include '../finance_details/projection_db.php';
     }
 }
 ?>
