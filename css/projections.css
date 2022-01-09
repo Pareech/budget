@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: lightgrey;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 2px;
+  text-align: center;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+.grid-container_total {
+  padding-top: 66px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-row-gap: .9em;
+  grid-column-gap: 1em;
+}
+
+.grid-container_tot>div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  border: 1px solid #000;
+}
+
+#grid_format {
+  width: 100%;
+  display: grid;
+  background-color: lightgrey;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid black;
+  border-collapse: collapse;
+  table-layout: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+table.table_totals {
+  width: 900px;
+}
+
+th {
+  background: rgba(112, 245, 156, 0.8);
+
+}
+
+th.heading {
+  background: rgba(84, 144, 235, 0.315);
+}
+
+th, td {
+  padding: 0.2rem;
+  border: 2px solid black;
+}

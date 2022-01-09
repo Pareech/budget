@@ -1,101 +1,88 @@
 <!DOCTYPE html>
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
-<link rel='stylesheet' type='text/css' href='../css/details.css' />
+<link rel='stylesheet' type='text/css' href='../css/projections.css' />
 <title>Budget Projections</title>
 
 <div class='header'>
     <h1>Monthly</br>Budget Projection</h1>
 </div>
 
+
 <?php
 
 include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
 
-// Monthly Net
-// $month_net = $pdo->prepare("SELECT TO_CHAR(current_timestamp, 'Month') AS monthly_net, net_amount
-//                                     FROM(
-//                                         SELECT SUM(
-//                                         (SELECT SUM(payment_amount)
-//                                         FROM
-//                                             (SELECT * FROM budget_projection
-//                                             WHERE EXTRACT(month FROM due_date) = EXTRACT(month FROM CURRENT_DATE) AND transaction_type = :income
-//                                             ORDER BY due_date) AS money_in)  
-//                                         +
-//                                         (SELECT SUM(payment_amount)
-//                                         FROM
-//                                             (SELECT payee, payment_amount, due_date, transaction_type
-//                                             FROM budget_projection
-//                                             WHERE EXTRACT(month FROM due_date) = EXTRACT(month FROM CURRENT_DATE) AND transaction_type = :payment
-//                                             ORDER BY due_date
-//                                             ) AS money_out) ) AS net_amount) AS toto;");
-// $month_net->execute(['income'=>'income', 'payment'=>'payment']);
-
-$monthly_total = 0;
-
-// for ($i = 0; $i < 3; ++$i) {
-
-$month_year = date('F Y',strtotime('first day of +0 month'));
-$get_month = date('Y-m', strtotime($month_year));
-
-$monies = $pdo->prepare("SELECT due_date, payee, payment_amount, transaction_type 
-                            FROM budget_projection
-                            WHERE due_date::text ILIKE :get_month
-                            -- WHERE EXTRACT(month FROM due_date) = EXTRACT(month FROM CURRENT_DATE)
-                            ORDER BY due_date, payee, payment_amount;");
 ?>
-
-<!-- Monthly Net Table -->
-<table class='table_totals'>
-    <tr>
-        <th>Date</th>
-        <th>Net Amount</th>
-    </tr>
+<div class="grid-container_total" ; id="grid_format">
 
     <?php
-    $monies->execute(['get_month'=> '%' . $get_month . '%']);
+    $monthly_total = 0;
+    $month_year = date('F Y', strtotime('now'));
+    $get_month = date('Y-m', strtotime($month_year));
 
-    foreach ($monies as $row) {
-        $amount = $row['payment_amount'];
-        $monthly_total += $amount;
-    }
-
-        echo "<tr>";
-        echo "<td>" . $month_year . "</td>";
-        echo "<td>$" . $monthly_total . "</td>";
-        echo "</tr>";
+    $current_month = $pdo->prepare("SELECT due_date, payee, payment_amount, transaction_type 
+                                FROM budget_projection
+                                WHERE due_date::text ILIKE :get_month
+                                ORDER BY due_date, payee, payment_amount;");
     ?>
-</table>
 
-<!-- Monthly Transactions Table -->
-<table class='table_totals'>
-    <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Expense</th>
-        <th>Deposit</th>
-    </tr>
-    <br><br>
+    <!-- Current Month Net Table -->
+    <table class='table_totals'>
+        <?php
+        $current_month->execute(['get_month' => '%' . $get_month . '%']);
 
-    <?php
-    $monies->execute(['get_month'=> '%' . $get_month . '%']);
-    foreach ($monies as $row) {
-        $date = date('d-M', strtotime($row['due_date']));
-        $source = $row['payee'];
-        $money = $row['payment_amount'];
-        $type = $row['transaction_type'];
-
-        echo "<tr>";
-        echo "<td>" . $date . "</td>";
-        echo "<td>" . $source . "</td>";
-
-        if ($type == 'payment') {
-            echo "<td style='color:red'>" . $money . "</td>" . "<td>" . "</td>";
-        } else {
-            echo "<td>" . "</td>" . "<td>" . $money . "</td>";
+        foreach ($current_month as $row) {
+            $amount = $row['payment_amount'];
+            $monthly_total += $amount;
         }
-        echo "</tr>";
-    }
-    ?>
-</table>
+        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+        $net_total = $money->formatCurrency($monthly_total, 'USD');
+
+        if ($monthly_total < 0) {
+            $monthly_total = '<span style="color:red;">' . $net_total;
+        }
+
+        ?>
+        <tr>
+            <th colspan="4" ; class='heading'>
+                <?php echo $month_year . "<br>
+                    Estimated Monthly Net " . $monthly_total;
+                ?>
+            </th>
+        </tr>
+
+        <!-- Curent Month Transactions Table -->
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Expense</th>
+            <th>Deposit</th>
+        </tr>
+
+        <?php
+
+        $current_month->execute(['get_month' => '%' . $get_month . '%']);
+        foreach ($current_month as $row) {
+            $date = date('d-M', strtotime($row['due_date']));
+            $source = $row['payee'];
+            $payment_amount = $row['payment_amount'];
+            $type = $row['transaction_type'];
+
+            echo "<tr>";
+            echo "<td>" . $date . "</td>";
+            echo "<td>" . $source . "</td>";
+
+            $money_amount = $money->formatCurrency($payment_amount, 'USD');
+
+            if ($type == 'payment') {
+                echo "<td style='color:red'>" . $money_amount . "</td>" . "<td>" . "</td>";
+            } else {
+                echo "<td>" . "</td>" . "<td>" . $money_amount . "</td>";
+            }
+            echo "</tr>";
+        }
+        ?>
+    </table>
+</div>
