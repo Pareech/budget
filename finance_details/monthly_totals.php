@@ -2,16 +2,8 @@
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
 <link rel='stylesheet' type='text/css' href='../css/details.css' />
-<title>Budget</title>
-
-<div class='header'>
-    <h1>Monthly Net</br>(Income - Spending)</h1>
-</div>
 
 <?php
-
-include '../db_connections/connection_pdo.php';
-include '../misc_files/nav_bar_links.php';
 
 $monthly_income = $pdo->prepare("SELECT to_char(deposit_date, 'YYYY-MM') AS deposit_month,
                                         round(avg(deposit_amount),2) AS  monthly_income_average,

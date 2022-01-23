@@ -58,6 +58,15 @@
       <a href=''>Next 10 Expenses</a>
     </div>
   </div>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Projections_test</button>
+    <div class="dropdown-content">
+      <a href='../_test_folder/enter_projections.php?proj=credit_cards'>Credit Cards</a>
+      <a href='../_test_folder/enter_projections.php?proj=deposits'>Deposits</a>
+      <a href='../_test_folder/enter_projections.php?proj=fixed'>Fixed Expenses</a>
+      <a href=''>Updated Projections</a>
+    </div>
+  </div>
   <a style="color:white" ; text-decoration="none" ; href='../index.php'>Main Page</a>
 </div>
 
