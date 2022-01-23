@@ -58,6 +58,15 @@
       <a href=''>Next 10 Expenses</a>
     </div>
   </div>
+  <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Projections_test</button>
+    <div class="dropdown-content">
+      <a href='_test_folder/enter_projections.php?proj=credit_cards'>Credit Cards</a>
+      <a href='_test_folder/enter_projections.php?proj=deposits'>Deposits</a>
+      <a href='_test_folder/enter_projections.php?proj=fixed'>Fixed Expenses</a>
+      <a href=''>Updated Projections</a>
+    </div>
+  </div>
 </div>
 
 <?php
@@ -67,6 +76,7 @@ if ($dbname == 'budget_dev') {
   echo "On Dev Environment<br><br>";
 }
 
+include 'finance_details/monthly_totals.php';
 include 'finance_details/averages.php';
 
 ?>
