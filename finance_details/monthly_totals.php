@@ -9,7 +9,7 @@ $monthly_income = $pdo->prepare("SELECT to_char(deposit_date, 'YYYY-MM') AS depo
                                         round(avg(deposit_amount),2) AS  monthly_income_average,
                                         sum(deposit_amount) AS monthly_income_total
                                  FROM income
-                                 WHERE deposit_date >= CURRENT_DATE - INTERVAL '12 months'
+                                 WHERE deposit_date >= CURRENT_DATE - INTERVAL '6 months'
                                  GROUP BY deposit_month
                                  ORDER BY deposit_month;");
 $monthly_income->execute();
@@ -19,7 +19,7 @@ $monthly_expenses = $pdo->prepare("SELECT to_char(purchase_date, 'YYYY-MM') AS p
                                           round(avg(amount),2) AS monthly_spend_average,
                                           sum(amount) AS monthly_spend_total
                                    FROM expenses
-                                   WHERE purchase_date >= CURRENT_DATE - INTERVAL '12 months'
+                                   WHERE purchase_date >= CURRENT_DATE - INTERVAL '6 months'
                                    GROUP BY purchase_month
                                    ORDER BY purchase_month;");
 $monthly_expenses->execute();

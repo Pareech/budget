@@ -111,7 +111,7 @@ if (isset($_POST['submit_expense'])) {
                                 VALUES (:item_purchased, :cost, :category, :kind, :cc, :expense_date, :note);");
         $spend->execute(['item_purchased' => $expense, 'cost' => $cost, 'category' => $category, 'kind' => $type, 'cc' => $card_used, 'expense_date' => $date, 'note' => $note]);
 
-        // include '../finance_details/projection_db.php';
+        // include '../finance_details/enter_projections_db.php';
 
         echo "<script> window.location.href='../index.php'</script>";
 

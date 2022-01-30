@@ -68,7 +68,7 @@ if (isset($_POST['submit_deposit'])) {
                                   VALUES (:deposit_amt, :depositor, :deposit_date, :deposit_type);");
         $deposit->execute(['deposit_amt' => $payment_amount, 'depositor' => $payee, 'deposit_date' => $date, 'deposit_type' => $note]);
 
-        include '../finance_details/projection_db.php';
+        include '../finance_details/enter_projections_db.php';
     }
 }
 ?>
