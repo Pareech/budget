@@ -95,7 +95,7 @@ if (isset($_POST['submit_amount'])) {
             $entry_type = 'income';
         }
 
-        include 'projection_db.php';
+        include 'enter_projections_db.php';
     }
 }
 ?>
