@@ -53,12 +53,18 @@ include '../misc_files/nav_bar_links.php';
                         echo "<td>" .  $row['payee'] . "</td>";
                         echo "<input type='hidden' name='payee[]' value='" . $row['payee'] . "'>";
 
+                        $transaction = $row['payment_amount'];
+
+                        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+                        $transaction_amount = $money->formatCurrency($transaction, 'USD');
+
+
                         if ($row['payment_amount'] < 0) {
-                            echo "<td style='color:red'>" . $row['payment_amount'] . "</td>" . "<td>" . "</td>";
+                            echo "<td style='color:red'>" . $transaction_amount . "</td>" . "<td>" . "</td>";
                         } else {
-                            echo "<td>" . "</td>" . "<td>" . $row['payment_amount'] . "</td>";
+                            echo "<td>" . "</td>" . "<td>" . $transaction_amount . "</td>";
                         }
-                        echo "<input type='hidden' name='payment_amount[]' value='" . $row['payment_amount'] . "'>";
+                        echo "<input type='hidden' name='payment_amount[]' value='" . $transaction_amount . "'>";
 
                         echo "<td style='background-color:#000000'></td><";
                         echo "td> <center><input id='textboxid' name='date_correction[]' placeholder='Date Correction' type='date' /></center> </td>";
