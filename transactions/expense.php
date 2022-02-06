@@ -63,6 +63,10 @@ $cc_charges->execute();
             <input type="text" id="textboxid" name="note" />
         </div>
         <div class="item">
+            <h2>Add Projection</h2>
+            <input type="checkbox" name="add_projection" value="yes">
+        </div>
+        <div class="item">
             <br><br><br>
             <button type="submit" id="transaction_button" name="submit_expense" class="button" value="submit">Submit<br>Expense</button>
         </div>
@@ -95,7 +99,6 @@ if (isset($_POST['submit_expense'])) {
         $note = $_POST['note'];
         $entry_type = 'payment';
 
-
         if ($note == '') {
             $note = NULL;
         }
@@ -113,10 +116,10 @@ if (isset($_POST['submit_expense'])) {
 
         $payment_amount = $payment_amount * -1;
 
-        include '../finance_details/enter_projections_db.php';
-
+        if (isset($_POST['add_projection'])) {
+            include '../finance_details/enter_projections_db.php';
+        }
         echo "<script> window.location.href='../index.php'</script>";
-
     }
 }
 ?>
