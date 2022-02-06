@@ -39,27 +39,19 @@ $recent_trasactions->execute();
     </tr>
 
     <?php
+    $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
     foreach ($recent_trasactions as $row) {
         $date = $row['date'];
-        $amount = $row['amount'];
+        $transaction = $row['amount'];
         $item = $row['item'];
 
-
-        // if ($amount < 0) {
-        //     $amount = "-$".$amount * -1;
-        // } else {
-        //     $amount = "$".$amount;
-        // }
-
+        $amount = $money->formatCurrency($transaction, 'USD');
         echo "<tr>";
         echo "<td>" . $date . "</td>";
-        if ($amount < 0) {
-            echo "<td style='color:red'>-$" . $amount * -1 . "</td>";
-            // $amount = "-$".$amount * -1;
+        if ($transaction < 0) {
+            echo "<td style='color:red'>" . $amount . "</td>";
         } else {
-            echo "<td style='color:green'>$" . $amount . "</td>";
-
-            // $amount = "$".$amount;
+            echo "<td style='color:green'>" . $amount . "</td>";
         }
 
         // echo "<td>" . $amount . "</td>";

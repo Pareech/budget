@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
-<link rel='stylesheet' type='text/css' href='../css/navbar.css' />
+<link rel='stylesheet' type='text/css' href='../css/index.css' />
 <title>Investments Navigation Bar</title>
 
 <!-- Navigation Bar -->
@@ -37,36 +37,35 @@
       <a href='../finance_details/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
-  <div class="dropdown">
+  <!-- <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Monthly Entries</button>
     <div class="dropdown-content">
       <a href=''>Credit Cards</a>
     </div>
-  </div>
-  <div class="dropdown">
+  </div> -->
+  <!-- <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Add Expense Type</button>
     <div class="dropdown-content">
       <a href=''>Add Credit Card</a>
       <a href=''>Add Expense</a>
     </div>
-  </div>
+  </div> -->
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Transactions</button>
     <div class="dropdown-content">
-      <a href='../transactions/recent_transactions.php'>Deposits / Expenses</a>
+      <a href='../transactions/recent_transactions.php'>Last 10 Transactions</a>
       <a href='../transactions/recent_deposits.php'>Last 10 Deposits</a>
       <a href='../transactions/recent_expenses.php'>Last 10 Expenses</a>
-      <a href=''>Next 10 Expenses</a>
     </div>
   </div>
-  <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Projections_test</button>
+  <!-- <div class="dropdown">
+    <button style="color:red" class="dropbtn">Projections_test</button>
     <div class="dropdown-content">
       <a href='../_test_folder/enter_enter_projections.php?proj=credit_cards'>Credit Cards</a>
       <a href='../_test_folder/enter_enter_projections.php?proj=deposits'>Deposits</a>
       <a href='../_test_folder/enter_enter_projections.php?proj=fixed'>Fixed Expenses</a>
     </div>
-  </div>
+  </div> -->
   <a style="color:white" ; text-decoration="none" ; href='../index.php'>Main Page</a>
 </div>
 
