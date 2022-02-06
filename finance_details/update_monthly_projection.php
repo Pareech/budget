@@ -64,7 +64,7 @@ include '../misc_files/nav_bar_links.php';
                         } else {
                             echo "<td>" . "</td>" . "<td>" . $transaction_amount . "</td>";
                         }
-                        echo "<input type='hidden' name='payment_amount[]' value='" . $transaction_amount . "'>";
+                        echo "<input type='hidden' name='payment_amount[]' value='" . $row['payment_amount'] . "'>";
 
                         echo "<td style='background-color:#000000'></td><";
                         echo "td> <center><input id='textboxid' name='date_correction[]' placeholder='Date Correction' type='date' /></center> </td>";
@@ -86,7 +86,7 @@ if (isset($_POST['projection_update'])) {
     $payee = $_POST['payee'];
     $payment_amount = $_POST['payment_amount'];
     $corrected_amount = $_POST['corrected_amount'];
-    $to_delete = $_POST['remove'];
+    // $to_delete = $_POST['remove'];
 
     $size = count($corrected_amount);
 
@@ -103,16 +103,19 @@ if (isset($_POST['projection_update'])) {
                 $payment = $payment_amount[$i];
             } else {
                 $payment = $corrected_amount[$i];
+                if ($payment_amount[$i] < 0) {
+                    $payment *= -1;
+                }
             }
 
             $original_date = $due_date[$i];
             $payee_to = $payee[$i];
 
-            // echo "payee_to: " . $payee_to . "<br>";
-            // echo "payment amount: " . $payment . "<br>";
-            // echo "payment date: " . $date . "<br>";
-            // echo "original_date: " . $original_date . "<br><br>";
-
+            //             echo "payee_to: " . $payee_to . "<br>";
+            //             echo "payment amount: " . $payment . "<br>";
+            //             echo "payment date: " . $date . "<br>";
+            //             echo "original_date: " . $original_date . "<br><br>";
+            // exit();
             $update_projection = $pdo->prepare("UPDATE budget_projection 
                                                 SET due_date = :date_due,
                                                     payment_amount = :amount_due
