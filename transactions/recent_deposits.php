@@ -31,14 +31,17 @@ $recent_trasactions->execute();
     </tr>
 
     <?php
+    $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
     foreach ($recent_trasactions as $row) {
         $date = $row['deposit_date'];
         $amount = $row['deposit_amount'];
         $item = $row['note'];
+        $deposit_amount = $money->formatCurrency($amount, 'USD');
+
 
         echo "<tr>";
         echo "<td>" . $date . "</td>";
-        echo "<td>" . $amount . "</td>";
+        echo "<td>" . $deposit_amount . "</td>";
         echo "<td>" . $item  . "</td>";
         echo "</tr>";
     }
