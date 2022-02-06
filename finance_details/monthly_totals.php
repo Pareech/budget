@@ -33,10 +33,12 @@ $totalExpenseArray = array();
 
 foreach ($monthly_income as $row) {
     $month =  $row['deposit_month'];
-    // $month =  date('F', strtotime($row['deposit_month']));
+    $year_name = date('Y', strtotime($row['deposit_month']));
+    $month_name =  date('M', strtotime($row['deposit_month']));
+    $monthly_transactions =  $month_name . ' ' . $year_name;
     $monthlyIncomeTotal = $row['monthly_income_total'];
 
-    array_push($monthArray, $month);
+    array_push($monthArray, $monthly_transactions);
     array_push($totalIncomeArray, $monthlyIncomeTotal);
 }
 
