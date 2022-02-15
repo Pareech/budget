@@ -21,7 +21,7 @@ include '../misc_files/nav_bar_links.php';
     $projections = $pdo->prepare("SELECT payee, payment_amount, due_date 
                                   FROM budget_projection
                                   WHERE due_date >= date_trunc('day', CURRENT_DATE) AND due_date <= NOW() + INTERVAL '2 months'
-                                  ORDER BY due_date;");
+                                  ORDER BY due_date, payment_amount DESC;");
     $projections->execute();
     ?>
 
@@ -58,7 +58,6 @@ include '../misc_files/nav_bar_links.php';
                         $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
                         $transaction_amount = $money->formatCurrency($transaction, 'USD');
 
-
                         if ($row['payment_amount'] < 0) {
                             echo "<td style='color:red'>" . $transaction_amount . "</td>" . "<td>" . "</td>";
                         } else {
@@ -69,7 +68,6 @@ include '../misc_files/nav_bar_links.php';
                         echo "<td style='background-color:#000000'></td><";
                         echo "td> <center><input id='textboxid' name='date_correction[]' placeholder='Date Correction' type='date' /></center> </td>";
                         echo "<td> <center><input id='textboxid' name='corrected_amount[]' placeholder='Correct Amount' type='text' /></center> </td>";
-                        // echo "<td> <input type='radio' id='radioItem' name='remove[]' value='to_delete'> </td>";
                     echo "</tr>";
                 }
                 ?>
@@ -86,7 +84,6 @@ if (isset($_POST['projection_update'])) {
     $payee = $_POST['payee'];
     $payment_amount = $_POST['payment_amount'];
     $corrected_amount = $_POST['corrected_amount'];
-    // $to_delete = $_POST['remove'];
 
     $size = count($corrected_amount);
 
@@ -111,11 +108,6 @@ if (isset($_POST['projection_update'])) {
             $original_date = $due_date[$i];
             $payee_to = $payee[$i];
 
-            //             echo "payee_to: " . $payee_to . "<br>";
-            //             echo "payment amount: " . $payment . "<br>";
-            //             echo "payment date: " . $date . "<br>";
-            //             echo "original_date: " . $original_date . "<br><br>";
-            // exit();
             $update_projection = $pdo->prepare("UPDATE budget_projection 
                                                 SET due_date = :date_due,
                                                     payment_amount = :amount_due
@@ -123,18 +115,7 @@ if (isset($_POST['projection_update'])) {
             $update_projection->execute(['date_due' => $date, 'amount_due' => $payment, 'pay_to' => $payee_to, 'original_date' => $original_date]);
         }
     }
-    // Delete Projections Not Needed
-    // $get_deletions = count($to_delete);
-    // if ($get_deletions > 0) {
-    //     for ($j = 0; $j < $get_deletions; ++$j) {
-    //         if ($to_delete[$j] == 'to_delete') {
-    //             echo "drop it like its hot<br><br>";
-    //             echo $j;
-    //         } else {
-    //             echo "keep that going<br>";
-    //         }
-    //     }
-    // }
+   
     echo
     "<script> 
         window.location.href='monthly_projection.php'
