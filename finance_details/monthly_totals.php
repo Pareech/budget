@@ -5,26 +5,21 @@
 
 <?php
 
-$monthly_income = $pdo->prepare("SELECT to_char(deposit_date, 'YYYY-MM') AS deposit_month,
-                                        round(avg(deposit_amount),2) AS  monthly_income_average,
-                                        sum(deposit_amount) AS monthly_income_total
-                                 FROM income
-                                 WHERE deposit_date >= CURRENT_DATE - INTERVAL '6 months'
-                                 GROUP BY deposit_month
-                                 ORDER BY deposit_month;");
+$monthly_income = $pdo->prepare("SELECT to_char(due_date, 'YYYY-MM') AS transaction_month, 
+                                        SUM(payment_amount) AS monthly_income_total
+                                 FROM budget_projection
+                                 WHERE due_date > CURRENT_DATE - INTERVAL '6 months' AND payment_amount > 0
+                                 GROUP BY transaction_month
+                                 ORDER BY transaction_month;");
 $monthly_income->execute();
 
-
-$monthly_expenses = $pdo->prepare("SELECT to_char(purchase_date, 'YYYY-MM') AS purchase_month,
-                                          round(avg(amount),2) AS monthly_spend_average,
-                                          sum(amount) AS monthly_spend_total
-                                   FROM expenses
-                                   WHERE purchase_date >= CURRENT_DATE - INTERVAL '6 months'
-                                   GROUP BY purchase_month
-                                   ORDER BY purchase_month;");
+$monthly_expenses = $pdo->prepare("SELECT to_char(due_date, 'YYYY-MM') AS transaction_month, 
+                                          SUM(payment_amount) AS monthly_spend_total
+                                   FROM budget_projection
+                                   WHERE due_date > CURRENT_DATE - INTERVAL '6 months' AND payment_amount < 0
+                                   GROUP BY transaction_month
+                                   ORDER BY transaction_month; ");
 $monthly_expenses->execute();
-
-
 
 $monthArray = array();
 $totalIncomeArray = array();
@@ -32,9 +27,9 @@ $totalExpenseArray = array();
 
 
 foreach ($monthly_income as $row) {
-    $month =  $row['deposit_month'];
-    $year_name = date('Y', strtotime($row['deposit_month']));
-    $month_name =  date('M', strtotime($row['deposit_month']));
+    $month =  $row['transaction_month'];
+    $year_name = date('Y', strtotime($row['transaction_month']));
+    $month_name =  date('M', strtotime($row['transaction_month']));
     $monthly_transactions =  $month_name . ' ' . $year_name;
     $monthlyIncomeTotal = $row['monthly_income_total'];
 
@@ -50,11 +45,12 @@ foreach ($monthly_expenses as $row) {
 $elements = count($monthArray);
 ?>
 
-<div class="grid-container_total" ; id="grid_format">
+<div class="grid-container_total" ; id="grid_monthly">
+    <br>
     <?php
     for ($i = 0; $i < $elements; $i++) {
         echo
-        "<div class='item' style='background-color:grey'>
+        "<div class='item' style='background-color:teal'>
             $monthArray[$i]
         </div>";
     }
@@ -62,12 +58,15 @@ $elements = count($monthArray);
 </div>
 
 <div class="grid-container_total" ; id="grid_format">
+    <div class='item' style='background-color:#ECF2E0'>
+        Income
+    </div>
     <?php
     for ($i = 0; $i < $elements; $i++) {
         $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
         $monthly_deposits = $money->formatCurrency($totalIncomeArray[$i], 'USD');
         echo
-        "<div class='item' style='background-color:green'>
+        "<div class='item' style='background-color:#ECF2E0'>
             $monthly_deposits
         </div>";
     }
@@ -75,12 +74,15 @@ $elements = count($monthArray);
 </div>
 
 <div class="grid-container_total" ; id="grid_format">
+    <div class='item' style='background-color:#ECF2E0'>
+        Expense
+    </div>
     <?php
     for ($i = 0; $i < $elements; $i++) {
         $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-        $monthly_spending = $money->formatCurrency($totalExpenseArray[$i], 'USD');
+        $monthly_spending = $money->formatCurrency($totalExpenseArray[$i] * -1, 'USD');
         echo
-        "<div class='item' style='background-color:red'>
+        "<div class='item' style='background-color:#ECF2E0'>
             $monthly_spending
         </div>";
     }
@@ -88,12 +90,23 @@ $elements = count($monthArray);
 </div>
 
 <div class="grid-container_total" ; id="grid_format">
+    <div class='item' style='background-color:#ECF2E0'>
+        Monthly Net
+    </div>
     <?php
     for ($i = 0; $i < $elements; $i++) {
+        $find_monthly_net = $totalIncomeArray[$i] + $totalExpenseArray[$i];
         $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-        $monthly_net = $money->formatCurrency($totalIncomeArray[$i] - $totalExpenseArray[$i], 'USD');
+        $monthly_net = $money->formatCurrency($find_monthly_net, 'USD');
+
+        if ($find_monthly_net > 0) {
+            $monthly_net = '<span style="color:#089000;">' . $monthly_net . '</span>';
+        } else {
+            $monthly_net = '<span style="color:#FF0000;">' . "(" . $monthly_net . ")" . '</span>';
+        }
+
         echo
-        "<div class='item'>
+        "<div class='item' style='background-color:#ECF2E0'>
             $monthly_net
         </div>";
     }

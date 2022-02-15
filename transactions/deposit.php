@@ -63,6 +63,7 @@ if (isset($_POST['submit_deposit'])) {
         $note = $_POST['note'];
         $date = $due_date = $_POST['date'];
         $entry_type = 'income';
+        $payment_used = 'Interact Transfer';
 
         $deposit = $pdo->prepare("INSERT INTO income (deposit_amount, depositor, deposit_date, note)
                                   VALUES (:deposit_amt, :depositor, :deposit_date, :deposit_type);");

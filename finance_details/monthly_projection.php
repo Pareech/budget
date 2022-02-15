@@ -23,9 +23,9 @@ include '../misc_files/nav_bar_links.php';
     $get_month = date('Y-m', strtotime($month_year));
 
     $current_month = $pdo->prepare("SELECT due_date, payee, payment_amount, transaction_type 
-                                FROM budget_projection
-                                WHERE due_date::text ILIKE :get_month
-                                ORDER BY due_date, payee, payment_amount;");
+                                    FROM budget_projection
+                                    WHERE due_date::text ILIKE :get_month
+                                    ORDER BY due_date, payment_amount DESC;");
     ?>
 
     <!-- Current Month Net Table -->
@@ -43,8 +43,8 @@ include '../misc_files/nav_bar_links.php';
         if ($monthly_total < 0) {
             $monthly_total = '<span style="color:red;">' . $net_total;
         }
-
         ?>
+
         <tr>
             <th colspan="4" ; class='heading'>
                 <?php echo $month_year . "<br>
@@ -62,7 +62,6 @@ include '../misc_files/nav_bar_links.php';
         </tr>
 
         <?php
-
         $current_month->execute(['get_month' => '%' . $get_month . '%']);
         foreach ($current_month as $row) {
             $date = date('d-M', strtotime($row['due_date']));
@@ -71,18 +70,19 @@ include '../misc_files/nav_bar_links.php';
             $type = $row['transaction_type'];
 
             echo "<tr>";
-            echo "<td>" . $date . "</td>";
-            echo "<td>" . $source . "</td>";
+                echo "<td>" . $date . "</td>";
+                echo "<td>" . $source . "</td>";
 
-            $money_amount = $money->formatCurrency($payment_amount, 'USD');
+                $money_amount = $money->formatCurrency($payment_amount, 'USD');
 
-            if ($type == 'payment') {
-                echo "<td style='color:red'>" . $money_amount . "</td>" . "<td>" . "</td>";
-            } else {
-                echo "<td>" . "</td>" . "<td>" . $money_amount . "</td>";
-            }
+                if ($type == 'payment') {
+                    echo "<td style='color:red'>" . $money_amount . "</td>" . "<td>" . "</td>";
+                } else {
+                    echo "<td>" . "</td>" . "<td style='color:#006400'>" . $money_amount . "</td>";
+                }
             echo "</tr>";
         }
         ?>
     </table>
+
 </div>

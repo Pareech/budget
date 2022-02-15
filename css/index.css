@@ -36,16 +36,6 @@ body {
   color: yellow;
 }
 
-/* Right-aligned link */
-.navbar a.right {
-  float: right;
-}
-
-/* Center-aligned link */
-.navbar a.center {
-  float: center;
-}
-
 /* Dropdown Box Section of NavBar --Start */
 .dropdown {
   float: left;
@@ -109,5 +99,4 @@ a:link, a:visited, a:hover, a:active {
     display: flex;
     flex-wrap: wrap;
   }
-
 }

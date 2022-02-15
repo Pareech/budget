@@ -23,7 +23,7 @@ body {
 }
 
 .grid-container_total {
-  grid-template-columns: repeat(13, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(auto-fill, 22px);
   grid-row-gap: .5em;
   grid-column-gap: 1em;
@@ -55,6 +55,14 @@ body {
   display: grid;
   background-color: lightgrey;
 }
+
+#grid_monthly {
+  width: 100%;
+  display: grid;
+  background-color: lightgrey;
+  font-weight: bold;
+}
+
 
 #grid_format_projection {
   width: 80%;

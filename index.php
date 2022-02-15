@@ -33,7 +33,7 @@
     <button style="color:yellow" class="dropbtn">Budget Projections</button>
     <div class="dropdown-content">
       <a href='finance_details/enter_projections.php'>Enter a Projection</a>
-      <a href='finance_details/monthly_projection.php'>Current Month Projections</a>
+      <a href='finance_details/monthly_projection.php'>Monthly Projections</a>
       <a href='finance_details/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
@@ -74,6 +74,7 @@ include 'db_connections/connection_pdo.php';
 if ($dbname == 'budget_dev') {
   echo "On Dev Environment<br><br>";
 }
+echo "<br><br>";
 
 include 'finance_details/monthly_totals.php';
 include 'finance_details/averages.php';
