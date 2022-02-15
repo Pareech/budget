@@ -12,6 +12,7 @@
 
 include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
+echo "<br><br>";
 
 $recent_trasactions = $pdo->prepare("SELECT * 
                                  FROM (SELECT deposit_date AS date, deposit_amount AS amount, note AS item
