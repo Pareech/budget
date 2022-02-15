@@ -15,7 +15,6 @@ include '../misc_files/nav_bar_links.php';
 
 $payment_method = $pdo->prepare("SELECT how_paid FROM payment_method ORDER BY how_paid ASC;");
 $payment_method->execute();
-
 ?>
 
 <form name="display" action="" method="POST">
@@ -54,7 +53,7 @@ $payment_method->execute();
         </div>
         <div class="item">
         </div>
-        <div class = "item">
+        <div class="item">
             <h5>*Only for Bill Payments</h5>
         </div>
     </div>
@@ -62,11 +61,10 @@ $payment_method->execute();
 
 
 <!-- Enter Budget Icome and Expenses Information Into the Database -->
-
 <?php
 if (isset($_POST['submit_amount'])) {
 
-    $required = array( 'amount', 'payment_used', 'date');
+    $required = array('amount', 'payment_used', 'date');
 
     $error = false;
     foreach ($required as $field) {
@@ -85,12 +83,21 @@ if (isset($_POST['submit_amount'])) {
         $payee = $_POST['payment_used'];
         $payment_amount = $_POST['amount'];
         $due_date = $_POST['date'];
-        
+
+
+        $payment_type = $pdo->prepare("SELECT payment_type FROM payment_method WHERE how_paid = :payment_type;");
+        $payment_type->execute(['payment_type' => $payee]);
+        $payment_used = $payment_type->fetchColumn();
+
+        if ($payment_used == '') {
+            $payment_used = 'Deposit';
+        }
+
         //Is it a projected income or expense
         $entry_type = $_POST['entry_type'];
-        
+
         if ($entry_type == 'payment') {
-            $payment_amount *=-1;
+            $payment_amount *= -1;
         } else {
             $entry_type = 'income';
         }

@@ -21,7 +21,7 @@ include '../misc_files/nav_bar_links.php';
 $choose_expense = $pdo->prepare("SELECT expense_name FROM expense_categories WHERE expense_category = :exp_cat ORDER BY expense_name;");
 $choose_expense->execute(['exp_cat' => $category]);
 
-$cc_charges = $pdo->prepare("SELECT how_paid FROM payment_method ORDER BY how_paid;");
+$cc_charges = $pdo->prepare("SELECT how_paid, payment_type FROM payment_method ORDER BY how_paid;");
 $cc_charges->execute();
 
 ?>
@@ -114,9 +114,18 @@ if (isset($_POST['submit_expense'])) {
                                 VALUES (:item_purchased, :cost, :category, :kind, :cc, :expense_date, :note);");
         $spend->execute(['item_purchased' => $expense, 'cost' => $cost, 'category' => $category, 'kind' => $type, 'cc' => $card_used, 'expense_date' => $date, 'note' => $note]);
 
-        $payment_amount = $payment_amount * -1;
-
+        
         if (isset($_POST['add_projection'])) {
+            $payment_amount *=-1;
+
+            $payment_type = $pdo->prepare("SELECT payment_type FROM payment_method WHERE how_paid = :payment_type;");
+            $payment_type->execute(['payment_type' => $card_used]);
+            $payment_used = $payment_type->fetchColumn();
+    
+            if ($payment_used == 'Cash') {
+                $payment_used = 'Interact Transfer';
+            }
+
             include '../finance_details/enter_projections_db.php';
         }
         echo "<script> window.location.href='../index.php'</script>";
