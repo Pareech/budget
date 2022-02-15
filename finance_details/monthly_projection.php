@@ -86,3 +86,4 @@ include '../misc_files/nav_bar_links.php';
     </table>
 
 </div>
+<br><br>

@@ -78,5 +78,5 @@ echo "<br><br>";
 
 include 'finance_details/monthly_totals.php';
 include 'finance_details/averages.php';
-
+echo "<br><br>";
 ?>
