@@ -8,6 +8,19 @@ body {
   margin: 0;
 }
 
+/* Header/logo Title */
+.header {
+  padding: 2px;
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
 /* Style the top navigation bar */
 .navbar {
   overflow: hidden;
@@ -18,9 +31,9 @@ body {
 .navbar a {
   float: left;
   display: block;
-  color: yellow;
   text-align: center;
   padding: 14px 20px;
+  color: yellow;
 }
 
 /* Dropdown Box Section of NavBar --Start */
@@ -30,7 +43,7 @@ body {
 }
 
 .dropdown .dropbtn {
-  font-size: 16px;  
+  font-size: 16px;
   border: none;
   outline: none;
   color: white;
@@ -54,7 +67,7 @@ a:link, a:visited, a:hover, a:active {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -75,10 +88,15 @@ a:link, a:visited, a:hover, a:active {
   display: block;
 }
 
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-  .navbar a {
-    float: none;
-    width: 100%;
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1280px) {
+  .col {
+    flex: 25%;
+  }
+
+  .row {
+    flex: 30%;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
