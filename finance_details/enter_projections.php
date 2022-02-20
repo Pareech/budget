@@ -2,11 +2,11 @@
 
 <meta http-equiv="Content-Type" content="text/html;" />
 <link rel='stylesheet' type='text/css' href='../css/transaction.css' />
-<title>Budget Projections</title>
+<title>Enter Credit Card Payment</title>
 
 
 <div class='header'>
-    <h1>Budget</br>Projections</h1>
+    <h1>Credit Card</br>Payment</h1>
 </div>
 
 <?php
@@ -20,16 +20,11 @@ $payment_method->execute();
 <form name="display" action="" method="POST">
     <div class="grid-container">
         <div class="item">
-            <h2>Entry Type</h2>
-            Income <input type="radio" id="radioItem" name="entry_type" value="income"><br>
-            Payment <input type="radio" id="radioItem" name="entry_type" value="payment">
-        </div>
-        <div class="item">
             <h2>Amount</h2>
             <input id="textboxid" name="amount" placeholder="amount" type="text" />
         </div>
         <div class="item">
-            <h2>Source*</h2>
+            <h2>Source</h2>
             <select id="textboxid" name="payment_used" value='' class=dropmenus></option>
                 <option value=""></option>
                 <?php
@@ -37,10 +32,6 @@ $payment_method->execute();
                     echo "<option value='$row[how_paid]'>$row[how_paid]</option>";
                 }
                 ?>
-                <option>-------</option>
-                <option value='Ian Salary'>Ian Salary</option>
-                <option value='Isabelle Salary'>Isabelle Salary</option>
-                <option value='Tangerine Cashback'>Tangerine Cashback</option>
             </select>
         </div>
         <div class="item">
@@ -52,9 +43,6 @@ $payment_method->execute();
             <button type="submit" id="transaction_button" name="submit_amount" class="button" value="submit">Submit<br>Action</button>
         </div>
         <div class="item">
-        </div>
-        <div class="item">
-            <h5>*Only for Bill Payments</h5>
         </div>
     </div>
 </form>
@@ -84,23 +72,12 @@ if (isset($_POST['submit_amount'])) {
         $payment_amount = $_POST['amount'];
         $due_date = $_POST['date'];
 
-
         $payment_type = $pdo->prepare("SELECT payment_type FROM payment_method WHERE how_paid = :payment_type;");
         $payment_type->execute(['payment_type' => $payee]);
         $payment_used = $payment_type->fetchColumn();
 
-        if ($payment_used == '') {
-            $payment_used = 'Deposit';
-        }
-
-        //Is it a projected income or expense
-        $entry_type = $_POST['entry_type'];
-
-        if ($entry_type == 'payment') {
-            $payment_amount *= -1;
-        } else {
-            $entry_type = 'income';
-        }
+        $entry_type = 'payment';
+        $payment_amount *= -1;
 
         include 'enter_projections_db.php';
     }
