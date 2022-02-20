@@ -32,7 +32,7 @@
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Budget Projections</button>
     <div class="dropdown-content">
-      <a href='../finance_details/enter_projections.php'>Enter a Projection</a>
+      <a href='../finance_details/enter_projections.php'>Enter Credit Card Payment</a>
       <a href='../finance_details/monthly_projection.php'>Monthly Projections</a>
       <a href='../finance_details/update_monthly_projection.php'>Update Projections</a>
     </div>
