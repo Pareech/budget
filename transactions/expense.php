@@ -126,7 +126,7 @@ if (isset($_POST['submit_expense'])) {
                 $payment_used = 'Interact Transfer';
             }
 
-            include '../finance_details/enter_projections_db.php';
+            include '../projections/enter_projections_db.php';
         }
         echo "<script> window.location.href='../index.php'</script>";
     }
