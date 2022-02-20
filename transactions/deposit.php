@@ -32,7 +32,7 @@ include '../misc_files/nav_bar_links.php';
                 <option value=""></option>
                 <option value='Ian Salary'>Ian Salary</option>
                 <option value='Isabelle Salary'>Isabelle Salary</option>
-                <option value='Tangerine Cashback'>Money-Back Rewards</option>
+                <option value='Tangerine Money-Back Rewards'>Tangerine Money-Back Rewards</option>
             </datalist>
         </div>
 
