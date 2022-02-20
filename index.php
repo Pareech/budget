@@ -32,7 +32,7 @@
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Budget Projections</button>
     <div class="dropdown-content">
-      <a href='projections/enter_projections.php'>Enter Credit Card Payment</a>
+      <a href='projections/enter_cc_payments.php'>Enter Credit Card Payment</a>
       <a href='projections/monthly_projection.php'>Monthly Projections</a>
       <a href='projections/update_monthly_projection.php'>Update Projections</a>
     </div>
@@ -61,9 +61,9 @@
   <!-- <div class="dropdown">
     <button style="color:red" class="dropbtn">Projections_test</button>
     <div class="dropdown-content">
-      <a href='_test_folder/enter_enter_projections.php?proj=credit_cards'>Credit Cards</a>
-      <a href='_test_folder/enter_enter_projections.php?proj=deposits'>Deposits</a>
-      <a href='_test_folder/enter_enter_projections.php?proj=fixed'>Fixed Expenses</a>
+      <a href='_test_folder/enter_enter_cc_payments.php?proj=credit_cards'>Credit Cards</a>
+      <a href='_test_folder/enter_enter_cc_payments.php?proj=deposits'>Deposits</a>
+      <a href='_test_folder/enter_enter_cc_payments.php?proj=fixed'>Fixed Expenses</a>
     </div>
   </div> -->
 </div>
