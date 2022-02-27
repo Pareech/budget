@@ -33,6 +33,8 @@
     <button style="color:yellow" class="dropbtn">Budget Projections</button>
     <div class="dropdown-content">
       <a href='../projections/enter_cc_payments.php'>Enter Credit Card Payment</a>
+      <a href='../projections/create_projections.php?generating=Expense'>Generate Expense Projection Series</a>
+      <a href='../projections/create_projections.php?generating=Income'>Generate Income Projection Series</a>
       <a href='../projections/monthly_projection.php'>Monthly Projections</a>
       <a href='../projections/update_monthly_projection.php'>Update Projections</a>
     </div>
