@@ -8,7 +8,7 @@
 $monthly_income = $pdo->prepare("SELECT to_char(due_date, 'YYYY-MM') AS transaction_month, 
                                         SUM(payment_amount) AS monthly_income_total
                                  FROM budget_projection
-                                 WHERE due_date > CURRENT_DATE - INTERVAL '6 months' AND payment_amount > 0
+                                 WHERE due_date > CURRENT_DATE - INTERVAL '6 months' AND date_trunc('month', due_date) <= date_trunc('month', current_date) AND payment_amount > 0
                                  GROUP BY transaction_month
                                  ORDER BY transaction_month;");
 $monthly_income->execute();
@@ -16,7 +16,7 @@ $monthly_income->execute();
 $monthly_expenses = $pdo->prepare("SELECT to_char(due_date, 'YYYY-MM') AS transaction_month, 
                                           SUM(payment_amount) AS monthly_spend_total
                                    FROM budget_projection
-                                   WHERE due_date > CURRENT_DATE - INTERVAL '6 months' AND payment_amount < 0
+                                   WHERE due_date > CURRENT_DATE - INTERVAL '6 months' AND date_trunc('month', due_date) <= date_trunc('month', current_date) AND payment_amount < 0
                                    GROUP BY transaction_month
                                    ORDER BY transaction_month; ");
 $monthly_expenses->execute();
