@@ -18,7 +18,6 @@
 
     function getTotals($pdo, $type)
     {
-        include 'averages_calc.php';
     ?>
 
         <table class="table_avg">
@@ -35,36 +34,38 @@
             </tr>
 
         <?php
-        $get_payments = $pdo->prepare("SELECT round(sum(amount), 2) AS year_spend, count(amount) AS numb_payments FROM expenses WHERE purchase_date > NOW() - INTERVAL '1 year' AND purchase_date < NOW() AND item_purchased = :exp_name;");
-        $get_expense = $pdo->prepare("SELECT payment_frequency, expense_type FROM expense_categories WHERE expense_name = :exp_name;");
-
-        foreach ($get_avg as $row) {
+        $get_payments = $pdo->prepare("SELECT item_purchased, 
+                                              round(sum(amount), 2) AS year_spend, 
+                                              round(sum(amount) / 12, 2) AS monthly_avg, 
+                                              round(sum(amount) / 12 / 2, 2) AS bi_monthly_avg,
+                                              count(amount) AS numb_payments
+                                        FROM expenses 
+                                        WHERE purchase_date > NOW() - INTERVAL '1 year' AND purchase_date < NOW() AND kind = :expType
+                                        GROUP BY item_purchased
+                                        ORDER BY item_purchased;");
+        $get_payments->execute(['expType' => $type]);
+        foreach ($get_payments as $row) {
             $exp_name = $row['item_purchased'];
-
-            $get_payments->execute(['exp_name' => $exp_name]);
-            while ($row_get = $get_payments->fetch()) {
-                $year_total = $row_get['year_spend'];
-                $numb_payments = $row_get['numb_payments'];
-            }
+            $monthly = $row['monthly_avg'];
+            $bimonthly = $row['bi_monthly_avg'];
+            $year_total = $row['year_spend'];
+            $numb_payments = $row['numb_payments'];
+        
+            $get_expense = $pdo->prepare("SELECT payment_frequency FROM expense_categories WHERE expense_name = :exp_name;");
 
             $get_expense->execute(['exp_name' => $exp_name]);
             while ($rows = $get_expense->fetch()) {
                 $frequency = $rows['payment_frequency'];
             }
 
-            if ($frequency == 1 OR $frequency == 4 OR $type == 'Variable') {
-                $monthly = $year_total / 12;
-                $bimonthly = $year_total / 12 / 2;
-            } elseif ($frequency == 6) {
-                $monthly = $year_total / $numb_payments / 2;
-                $bimonthly = $year_total / $numb_payments / 4;
-            } elseif ($frequency == 12 OR $frequency == 24) {
+            if ($frequency == 24) {
                 $monthly = $year_total / $numb_payments;
                 $bimonthly = $year_total / $numb_payments / 2;
             } elseif ($frequency == 26) {
                 $monthly = $year_total / $numb_payments * 2;
                 $bimonthly = $year_total / $numb_payments;
             }
+
             echo "<tr>";
                 echo "<td>" . $exp_name . "</td>";
                 echo "<td> $" . number_format($monthly, 2) . "</td>";
