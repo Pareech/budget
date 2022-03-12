@@ -38,26 +38,13 @@ $month_year = date('F Y', strtotime('now'));
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Budget Projections</button>
     <div class="dropdown-content">
-    <a href='../projections/monthly_projection.php'><?php echo $month_year; ?> Projections</a>
+      <a href='../projections/monthly_projection.php'><?php echo $month_year; ?> Projections</a>
       <a> --------- </a>
       <a href='../projections/create_projections.php?generating=Expense'>Generate Expense Projection Series</a>
       <a href='../projections/create_projections.php?generating=Income'>Generate Income Projection Series</a>
       <a href='../projections/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Monthly Entries</button>
-    <div class="dropdown-content">
-      <a href=''>Credit Cards</a>
-    </div>
-  </div> -->
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Add Expense Type</button>
-    <div class="dropdown-content">
-      <a href=''>Add Credit Card</a>
-      <a href=''>Add Expense</a>
-    </div>
-  </div> -->
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Credit Card Actions</button>
     <div class="dropdown-content">
@@ -65,22 +52,6 @@ $month_year = date('F Y', strtotime('now'));
       <a href='../finance_details/validate_cc.php'>Validate Monthly Charges</a>
     </div>
   </div>
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Transactions</button>
-    <div class="dropdown-content">
-      <a href='../transactions/recent_transactions.php'>Last 10 Transactions</a>
-      <a href='../transactions/recent_deposits.php'>Last 10 Deposits</a>
-      <a href='../transactions/recent_expenses.php'>Last 10 Expenses</a>
-    </div>
-  </div> -->
-  <!-- <div class="dropdown">
-    <button style="color:red" class="dropbtn">Projections_test</button>
-    <div class="dropdown-content">
-      <a href='../_test_folder/enter_enter_cc_payments.php?proj=credit_cards'>Credit Cards</a>
-      <a href='../_test_folder/enter_enter_cc_payments.php?proj=deposits'>Deposits</a>
-      <a href='../_test_folder/enter_enter_cc_payments.php?proj=fixed'>Fixed Expenses</a>
-    </div>
-  </div> -->
   <a style="color:white" ; text-decoration="none" ; href='../index.php'>Main Page</a>
 </div>
 

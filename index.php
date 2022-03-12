@@ -9,7 +9,6 @@ include 'db_connections/connection_pdo.php';
 $month_year = date('F Y', strtotime('now'));
 ?>
 
-
 <div class='header' ;>
   <h1>Budget</br>Overview</h1>
 </div>
@@ -53,14 +52,6 @@ $month_year = date('F Y', strtotime('now'));
       <a href='finance_details/validate_cc.php'>Validate Monthly Charges</a>
     </div>
   </div>
-  <!-- <div class="dropdown">
-    <button style="color:red" class="dropbtn">Projections_test</button>
-    <div class="dropdown-content">
-      <a href='_test_folder/enter_enter_cc_payments.php?proj=credit_cards'>Credit Cards</a>
-      <a href='_test_folder/enter_enter_cc_payments.php?proj=deposits'>Deposits</a>
-      <a href='_test_folder/enter_enter_cc_payments.php?proj=fixed'>Fixed Expenses</a>
-    </div>
-  </div> -->
 </div>
 
 <?php
