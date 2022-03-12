@@ -4,6 +4,12 @@
 <link rel='stylesheet' type='text/css' href='css/index.css' />
 <title>Budget</title>
 
+<?php
+include 'db_connections/connection_pdo.php';
+$month_year = date('F Y', strtotime('now'));
+?>
+
+
 <div class='header' ;>
   <h1>Budget</br>Overview</h1>
 </div>
@@ -27,15 +33,16 @@
       <a href='transactions/expense.php?exp=Other'>Misc. Expenses</a>
       <a href='transactions/expense.php?exp=Transportation'>Transportation</a>
       <a href='transactions/expense.php?exp=Utilities'>Utilities</a>
+      <a href='transactions/expense.php?exp=Yearly'>Yearly Charges</a>
     </div>
   </div>
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Budget Projections</button>
     <div class="dropdown-content">
-      <a href='projections/enter_cc_payments.php'>Enter Credit Card Payment</a>
+      <a href='projections/monthly_projection.php'><?php echo $month_year; ?> Projections</a>
+      <a> --------- </a>
       <a href='projections/create_projections.php?generating=Expense'>Generate Expense Projection Series</a>
       <a href='projections/create_projections.php?generating=Income'>Generate Income Projection Series</a>
-      <a href='projections/monthly_projection.php'>Monthly Projections</a>
       <a href='projections/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
@@ -53,13 +60,20 @@
     </div>
   </div> -->
   <div class="dropdown">
+    <button style="color:yellow" class="dropbtn">Credit Card Actions</button>
+    <div class="dropdown-content">
+      <a href='projections/enter_cc_payments.php'>Enter Credit Card Payment</a>
+      <a href='finance_details/validate_cc.php'>Validate Monthly Charges</a>
+    </div>
+  </div>
+  <!-- <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Transactions</button>
     <div class="dropdown-content">
       <a href='transactions/recent_transactions.php'>Last 10 Transactions</a>
       <a href='transactions/recent_deposits.php'>Last 10 Deposits</a>
       <a href='transactions/recent_expenses.php'>Last 10 Expenses</a>
     </div>
-  </div>
+  </div> -->
   <!-- <div class="dropdown">
     <button style="color:red" class="dropbtn">Projections_test</button>
     <div class="dropdown-content">
@@ -71,8 +85,6 @@
 </div>
 
 <?php
-
-include 'db_connections/connection_pdo.php';
 if ($dbname == 'budget_dev') {
   echo "On Dev Environment<br><br>";
 }
