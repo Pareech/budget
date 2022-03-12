@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: lightgrey;
+}
+
+/* Header/logo Title */
+.header {
+    padding: 2px;
+    text-align: center;
+    background: black;
+    color: white;
+}
+
+/* .grid-container {
+    display: grid;
+    padding-top: 66px;
+    grid-template-columns: repeat(2, 350px);
+    grid-template-rows: repeat(auto-fill, 125px);
+    background-color: lightgrey;
+    grid-row-gap: .9em;
+    grid-column-gap: 1em;
+  }
+  
+  .grid-container > div {
+    text-align: center;
+    padding: 2px 10;
+  }
+
+  #grid_format {
+    width: 100%;
+    display: grid;
+    background-color: lightgrey;
+  } */
+
+#myDIV {
+  height:400px;
+  display: grid;
+  gap: 10px;
+  /* background-color: #2196F3; */
+  padding: 10px;
+  grid-template-areas: 'myArea .' 'myArea .';
+}
+
+#myDIV div {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  text-align: center;
+  padding: 20px 0;
+}
+
+.item1 {
+  grid-area: myArea;
+}
+
+
+.dropmenus {
+    width: 120px;
+    height: 25px;
+}
+
+#textboxid {
+    height: 25px;
+    text-align: center;
+    border: 0px none;
+    width: 150px;
+}
+
+#transaction_button {
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    height: 50px;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    border-collapse: collapse;
+    table-layout: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 850px;
+  }
+
+
+  th {
+    background: rgba(112, 245, 156, 0.8);
+  
+  }
+  
+  th.heading {
+    background: rgba(84, 144, 235, 0.315);
+  }
+  
+  th, td {
+    padding: 0.2rem;
+    border: 2px solid black;
+  }
