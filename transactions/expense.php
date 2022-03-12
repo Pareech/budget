@@ -126,18 +126,17 @@ if (isset($_POST['submit_expense'])) {
         $spend = $pdo->prepare("INSERT INTO expenses (item_purchased, amount, category, kind, paid_by, purchase_date, note)
                                 VALUES (:item_purchased, :cost, :category, :kind, :cc, :expense_date, :note);");
         $spend->execute(['item_purchased' => $expense, 'cost' => $cost, 'category' => $category, 'kind' => $type, 'cc' => $card_used, 'expense_date' => $date, 'note' => $note]);
- 
+
         if (isset($_POST['add_projection'])) {
             $payment_amount *= -1;
 
             $payment_type = $pdo->prepare("SELECT payment_type FROM payment_method WHERE how_paid = :payment_type;");
             $payment_type->execute(['payment_type' => $card_used]);
             $payment_used = $payment_type->fetchColumn();
-    
+
             if ($payment_used == 'Cash') {
                 $payment_used = 'Interact Transfer';
             }
-
             include '../projections/enter_projections_db.php';
         }
         echo "<script> window.location.href='../index.php'</script>";
