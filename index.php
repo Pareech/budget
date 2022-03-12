@@ -39,19 +39,6 @@
       <a href='projections/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Monthly Entries</button>
-    <div class="dropdown-content">
-      <a href=''>Credit Cards</a>
-    </div>
-  </div> -->
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Add Expense Type</button>
-    <div class="dropdown-content">
-      <a href=''>Add Credit Card</a>
-      <a href=''>Add Expense</a>
-    </div>
-  </div> -->
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Transactions</button>
     <div class="dropdown-content">
