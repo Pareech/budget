@@ -157,8 +157,6 @@ if (isset($_POST['submit_amount'])) {
         $note = '';
     }
 
-
-
     if ($doingWhat == 'Expense') {
         $payment_type = $pdo->prepare("SELECT payment_type FROM payment_method WHERE how_paid = :payment_type;");
         $payment_type->execute(['payment_type' => $payment_method]);

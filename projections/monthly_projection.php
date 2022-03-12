@@ -5,21 +5,18 @@
 <title>Budget Projections</title>
 
 <div class='header'>
-    <h1>Monthly</br>Budget Projection</h1>
+    <h1><?php echo date('F Y', strtotime('now'));?> </br>Budget Projection</h1>
 </div>
 
 
 <?php
-
 include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
-
 ?>
 <div class="grid-container_total" ; id="grid_format">
 
     <?php
     $monthly_total = 0;
-    $month_year = date('F Y', strtotime('now'));
     $get_month = date('Y-m', strtotime($month_year));
 
     $current_month = $pdo->prepare("SELECT due_date, payee, payment_amount, transaction_type 
@@ -47,8 +44,7 @@ include '../misc_files/nav_bar_links.php';
 
         <tr>
             <th colspan="4" ; class='heading'>
-                <?php echo $month_year . "<br>
-                    Estimated Monthly Net " . $monthly_total;
+                <?php echo $month_year . "<br>Net " . $monthly_total;
                 ?>
             </th>
         </tr>
