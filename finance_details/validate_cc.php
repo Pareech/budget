@@ -18,8 +18,8 @@ $cc_check->execute();
 
 ?>
 
-<div id="myDIV">
-    <form name="display" action="" method="POST">
+<form name="display" action="" method="POST">
+        <div class="grid-container">
         <div class="item1">
             <h2>Source</h2>
             <select id="textboxid" name="cc_used" value='' class=dropmenus></option>
@@ -79,31 +79,31 @@ $cc_check->execute();
         $credit_card = $money->formatCurrency($cc_sum, 'USD');
 
     ?>
-<div class="item5">
-        <table class='table'>
-            <tr>
-                <th colspan="4" ; class='heading'>
-                    <?php echo $cc . "<br>Monthly Charges: " . $credit_card; ?>
-                </th>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <th>Item</th>
-                <th>Cost</th>
-                <th>Note</th>
-            </tr>
+        <div class="item5">
+            <table class='table'>
+                <tr>
+                    <th colspan="4" ; class='heading'>
+                        <?php echo $cc . "<br>Monthly Charges: " . $credit_card; ?>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Item</th>
+                    <th>Cost</th>
+                    <th>Note</th>
+                </tr>
 
-            <?php
-            foreach ($verify as $row) {
-                echo "<tr>";
+                <?php
+                foreach ($verify as $row) {
+                    echo "<tr>";
                     echo "<td>" . date('d-M', strtotime($row['purchase_date'])) . "</td>";
                     echo "<td>" . $row['item_purchased'] . "</td>";
                     echo "<td>" . $row['amount']  . "</td>";
                     echo "<td>" . $row['note']  . "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </table>
+                    echo "</tr>";
+                }
+                ?>
+            </table>
         </div>
     <?php
     }
