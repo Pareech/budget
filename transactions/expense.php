@@ -12,14 +12,21 @@ include '../db_connections/connection_pdo.php';
 
 $category = $_GET['exp'];
 
+if ($category == 1) {
+    $category = 'Yearly';
+}
+
 echo "<div class='header'>
     <h1>Enter $category<br>Expenses</h1>
 </div>";
 
 include '../misc_files/nav_bar_links.php';
 
-$choose_expense = $pdo->prepare("SELECT expense_name FROM expense_categories WHERE expense_category = :exp_cat ORDER BY expense_name;");
+$choose_expense = $pdo->prepare("SELECT expense_name FROM expense_categories WHERE expense_category = :exp_cat AND payment_frequency::integer <> 1 ORDER BY expense_name;");
 $choose_expense->execute(['exp_cat' => $category]);
+
+$yearly_expense = $pdo->prepare("SELECT expense_name FROM expense_categories WHERE payment_frequency::integer = 1 ORDER BY expense_name;");
+$yearly_expense->execute();
 
 $cc_charges = $pdo->prepare("SELECT how_paid, payment_type FROM payment_method ORDER BY how_paid;");
 $cc_charges->execute();
@@ -33,8 +40,14 @@ $cc_charges->execute();
             <select id="textboxid" name="expense" value='' class=dropmenus></option>
                 <option value=""></option>
                 <?php
-                foreach ($choose_expense as $row) {
-                    echo "<option value='$row[expense_name]'>$row[expense_name]</option>";
+                if ($category <> 'Yearly') {
+                    foreach ($choose_expense as $row) {
+                        echo "<option value='$row[expense_name]'>$row[expense_name]</option>";
+                    }
+                } else {
+                    foreach ($yearly_expense as $row) {
+                        echo "<option value='$row[expense_name]'>$row[expense_name]</option>";
+                    }
                 }
                 ?>
             </select>
@@ -113,10 +126,9 @@ if (isset($_POST['submit_expense'])) {
         $spend = $pdo->prepare("INSERT INTO expenses (item_purchased, amount, category, kind, paid_by, purchase_date, note)
                                 VALUES (:item_purchased, :cost, :category, :kind, :cc, :expense_date, :note);");
         $spend->execute(['item_purchased' => $expense, 'cost' => $cost, 'category' => $category, 'kind' => $type, 'cc' => $card_used, 'expense_date' => $date, 'note' => $note]);
-
-        
+ 
         if (isset($_POST['add_projection'])) {
-            $payment_amount *=-1;
+            $payment_amount *= -1;
 
             $payment_type = $pdo->prepare("SELECT payment_type FROM payment_method WHERE how_paid = :payment_type;");
             $payment_type->execute(['payment_type' => $card_used]);
