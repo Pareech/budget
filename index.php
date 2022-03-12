@@ -46,19 +46,6 @@ $month_year = date('F Y', strtotime('now'));
       <a href='projections/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Monthly Entries</button>
-    <div class="dropdown-content">
-      <a href=''>Credit Cards</a>
-    </div>
-  </div> -->
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Add Expense Type</button>
-    <div class="dropdown-content">
-      <a href=''>Add Credit Card</a>
-      <a href=''>Add Expense</a>
-    </div>
-  </div> -->
   <div class="dropdown">
     <button style="color:yellow" class="dropbtn">Credit Card Actions</button>
     <div class="dropdown-content">
@@ -66,14 +53,6 @@ $month_year = date('F Y', strtotime('now'));
       <a href='finance_details/validate_cc.php'>Validate Monthly Charges</a>
     </div>
   </div>
-  <!-- <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Transactions</button>
-    <div class="dropdown-content">
-      <a href='transactions/recent_transactions.php'>Last 10 Transactions</a>
-      <a href='transactions/recent_deposits.php'>Last 10 Deposits</a>
-      <a href='transactions/recent_expenses.php'>Last 10 Expenses</a>
-    </div>
-  </div> -->
   <!-- <div class="dropdown">
     <button style="color:red" class="dropbtn">Projections_test</button>
     <div class="dropdown-content">
