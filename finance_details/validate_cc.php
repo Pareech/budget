@@ -19,7 +19,7 @@ $cc_check->execute();
 ?>
 
 <form name="display" action="" method="POST">
-        <div class="grid-container">
+    <div class="grid-container">
         <div class="item1">
             <h2>Source</h2>
             <select id="textboxid" name="cc_used" value='' class=dropmenus></option>
@@ -48,64 +48,64 @@ $cc_check->execute();
         </div>
 
         <!-- </div> -->
-    </form>
+</form>
 
-    <?php
+<?php
 
-    if (isset($_POST['check_cc'])) {
-        $cc = $_POST['cc_used'];
-        $start_date = $_POST['start_date'];
-        $end_date = $_POST['end_date'];
+if (isset($_POST['check_cc'])) {
+    $cc = $_POST['cc_used'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
 
-        if ($end_date == NULL) {
-            $end_date = date("Y-m-d");
-        }
+    if ($end_date == NULL) {
+        $end_date = date("Y-m-d");
+    }
 
-        // Get all charges for a credit card period
-        $verify = $pdo->prepare("SELECT item_purchased, amount, purchase_date, note 
+    // Get all charges for a credit card period
+    $verify = $pdo->prepare("SELECT item_purchased, amount, purchase_date, note 
                          FROM expenses
                          WHERE (purchase_date,purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc
                          ORDER BY purchase_date;");
-        $verify->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
+    $verify->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
 
-        // Sum all charges for a credit card period
-        $cc_charges = $pdo->prepare("SELECT sum(amount) 
+    // Sum all charges for a credit card period
+    $cc_charges = $pdo->prepare("SELECT sum(amount) 
                              FROM expenses
                              WHERE (purchase_date,purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc;");
-        $cc_charges->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
-        $cc_sum = $cc_charges->fetchColumn();
+    $cc_charges->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
+    $cc_sum = $cc_charges->fetchColumn();
 
-        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-        $credit_card = $money->formatCurrency($cc_sum, 'USD');
+    $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+    $cc_sum = $money->formatCurrency($cc_sum, 'USD');
 
-    ?>
-        <div class="item5">
-            <table class='table'>
-                <tr>
-                    <th colspan="4" ; class='heading'>
-                        <?php echo $cc . "<br>Monthly Charges: " . $credit_card; ?>
-                    </th>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <th>Item</th>
-                    <th>Cost</th>
-                    <th>Note</th>
-                </tr>
+?>
+    <div class="item5">
+        <table class='table'>
+            <tr>
+                <th colspan="4" ; class='heading'>
+                    <?php echo $cc . "<br>Monthly Charges: " .$cc_sum; ?>
+                </th>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <th>Item</th>
+                <th>Cost</th>
+                <th>Note</th>
+            </tr>
 
-                <?php
-                foreach ($verify as $row) {
-                    echo "<tr>";
+            <?php
+            foreach ($verify as $row) {
+                echo "<tr>";
                     echo "<td>" . date('d-M', strtotime($row['purchase_date'])) . "</td>";
                     echo "<td>" . $row['item_purchased'] . "</td>";
-                    echo "<td>" . $row['amount']  . "</td>";
+                    echo "<td>" . $money->formatCurrency($row['amount'], 'USD')  . "</td>";
                     echo "<td>" . $row['note']  . "</td>";
-                    echo "</tr>";
-                }
-                ?>
-            </table>
-        </div>
-    <?php
-    }
-    ?>
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
+<?php
+}
+?>
 </div>
