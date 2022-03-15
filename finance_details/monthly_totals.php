@@ -50,7 +50,7 @@ $elements = count($monthArray);
     <?php
     for ($i = 0; $i < $elements; $i++) {
         echo
-        "<div class='item' style='background-color:teal'>
+        "<div class='item' style='background-color:#FF6700; color:#663399'>
             $monthArray[$i]
         </div>";
     }
@@ -58,7 +58,7 @@ $elements = count($monthArray);
 </div>
 
 <div class="grid-container_total" ; id="grid_format">
-    <div class='item' style='background-color:#ECF2E0'>
+    <div class='item' style='background-color:#05C3DD'>
         Income
     </div>
     <?php
@@ -74,7 +74,7 @@ $elements = count($monthArray);
 </div>
 
 <div class="grid-container_total" ; id="grid_format">
-    <div class='item' style='background-color:#ECF2E0'>
+    <div class='item' style='background-color:#05C3DD'>
         Expense
     </div>
     <?php
@@ -90,7 +90,7 @@ $elements = count($monthArray);
 </div>
 
 <div class="grid-container_total" ; id="grid_format">
-    <div class='item' style='background-color:#ECF2E0'>
+    <div class='item' style='background-color:#05C3DD'>
         Monthly Net
     </div>
     <?php
@@ -102,7 +102,7 @@ $elements = count($monthArray);
         if ($find_monthly_net > 0) {
             $monthly_net = '<span style="color:#089000;">' . $monthly_net . '</span>';
         } else {
-            $monthly_net = '<span style="color:#FF0000;">' . "(" . $monthly_net . ")" . '</span>';
+            $monthly_net = '<span style="color:#FF0000;">' . $monthly_net . '</span>';
         }
 
         echo
