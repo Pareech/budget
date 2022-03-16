@@ -16,14 +16,24 @@ $month_year = date('F Y', strtotime('now'));
 <!-- Navigation Bar -->
 <div class='navbar'>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Income</button>
+    <button style="color:#FFFF00" class="dropbtn">Budget Projections</button>
     <div class="dropdown-content">
-      <a href='transactions/deposit.php'>Deposit</a>
+      <a href='projections/monthly_projection.php'><?php echo $month_year; ?> Projections</a>
+      <a> --------- </a>
+      <a href='projections/create_projections.php?generating=Expense'>Generate Expense Projection Series</a>
+      <a href='projections/create_projections.php?generating=Income'>Generate Income Projection Series</a>
+      <a href='projections/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
-
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Expenses</button>
+    <button style="color:#FFFF00" class="dropbtn">Credit Card Actions</button>
+    <div class="dropdown-content">
+      <a href='projections/enter_cc_payments.php'>Enter Credit Card Payment</a>
+      <a href='finance_details/validate_cc.php'>Validate Monthly Charges</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button style="color:#FFFF00" class="dropbtn">Expenses</button>
     <div class="dropdown-content">
       <a href='transactions/expense.php?exp=Groceries'>Groceries</a>
       <a href='transactions/expense.php?exp=Housing'>Housing</a>
@@ -36,20 +46,16 @@ $month_year = date('F Y', strtotime('now'));
     </div>
   </div>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Budget Projections</button>
+    <button style="color:#FFFF00" class="dropbtn">Income</button>
     <div class="dropdown-content">
-      <a href='projections/monthly_projection.php'><?php echo $month_year; ?> Projections</a>
-      <a> --------- </a>
-      <a href='projections/create_projections.php?generating=Expense'>Generate Expense Projection Series</a>
-      <a href='projections/create_projections.php?generating=Income'>Generate Income Projection Series</a>
-      <a href='projections/update_monthly_projection.php'>Update Projections</a>
+      <a href='transactions/deposit.php'>Deposit</a>
     </div>
   </div>
   <div class="dropdown">
-    <button style="color:yellow" class="dropbtn">Credit Card Actions</button>
+    <button style="color:#FFFF00" class="dropbtn">Transfers</button>
     <div class="dropdown-content">
-      <a href='projections/enter_cc_payments.php'>Enter Credit Card Payment</a>
-      <a href='finance_details/validate_cc.php'>Validate Monthly Charges</a>
+      <a href='transactions/money_trsf.php?who=Ian'>Ian</a>
+      <a href='transactions/money_trsf.php?who=Isabelle'>Isabelle</a>
     </div>
   </div>
 </div>
