@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
-<link rel='stylesheet' type='text/css' href='../css/index.css' />
+<link rel='stylesheet' type='text/css' href='../css/navbar.css' />
 <title>Investments Navigation Bar</title>
 
 <?php
@@ -56,6 +56,13 @@ $month_year = date('F Y', strtotime('now'));
     <div class="dropdown-content">
       <a href='../transactions/money_trsf.php?who=Ian'>Ian</a>
       <a href='../transactions/money_trsf.php?who=Isabelle'>Isabelle</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button style="color:#FFFF00" class="dropbtn">Updates</button>
+    <div class="dropdown-content">
+      <a href='../finance_details/payment_updates.php'>Update Payment Entry</a>
+      <a href='../projections/update_monthly_projection.php'>Update Monthly Projections</a>
     </div>
   </div>
   <a style="color:white" ; text-decoration="none" ; href='../index.php'>Main Page</a>

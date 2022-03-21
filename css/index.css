@@ -12,13 +12,45 @@ body {
 .header {
   padding: 2px;
   text-align: center;
-  background: black;
-  color: white;
+  background: #000000;
+  color: green;
+  text-align: center;
 }
 
 /* Increase the font size of the heading */
 .header h1 {
-  font-size: 40px;
+  font-size: 35px;
+}
+
+.header h2 {
+  font-size: 30px;
+  text-align: right;
+}
+
+.grid-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto;
+  background-color: #000000;
+  padding: 10px;
+  /* font-size: 16px; */
+}
+
+.grid-container > div {
+  text-align: center;
+  padding: 10px 40px;
+}
+
+ .item1 {
+  grid-area: 1 / 1;
+  padding-right: 25px;
+  /* color:orange; */
+}
+
+.item2 {
+  grid-area: 1 / 2 ;
+  color: white;
+
 }
 
 /* Style the top navigation bar */
