@@ -9,8 +9,18 @@ include 'db_connections/connection_pdo.php';
 $month_year = date('F Y', strtotime('now'));
 ?>
 
-<div class='header' ;>
-  <h1>Budget</br>Overview</h1>
+<div class="grid-container">
+  <div class='header' ;>
+    <div class="item1">
+      <?php include 'finance_details/year_averages.php'; ?>
+    </div>
+  </div>
+
+  <div class='header' ;>
+    <div class="item2">
+      <h1>Budget<br>Overview</h1>
+    </div>
+  </div>
 </div>
 
 <!-- Navigation Bar -->
@@ -22,7 +32,6 @@ $month_year = date('F Y', strtotime('now'));
       <a> --------- </a>
       <a href='projections/create_projections.php?generating=Expense'>Generate Expense Projection Series</a>
       <a href='projections/create_projections.php?generating=Income'>Generate Income Projection Series</a>
-      <a href='projections/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
   <div class="dropdown">
@@ -58,15 +67,20 @@ $month_year = date('F Y', strtotime('now'));
       <a href='transactions/money_trsf.php?who=Isabelle'>Isabelle</a>
     </div>
   </div>
+  <div class="dropdown">
+    <button style="color:#FFFF00" class="dropbtn">Updates</button>
+    <div class="dropdown-content">
+      <a href='finance_details/payment_updates.php'>Update Payment Entry</a>
+      <a href='projections/update_monthly_projection.php'>Update Monthly Projections</a>
+    </div>
+  </div>
 </div>
 
 <?php
 if ($dbname == 'budget_dev') {
   echo "On Dev Environment<br><br>";
 }
-echo "<br><br>";
 
 include 'finance_details/monthly_totals.php';
 include 'finance_details/averages.php';
-echo "<br><br>";
 ?>
