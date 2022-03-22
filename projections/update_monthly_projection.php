@@ -15,66 +15,65 @@ include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
 
 ?>
-<div class="grid-container_total" ; id="grid_format">
 
-    <?php
-    $projections = $pdo->prepare("SELECT payee, payment_amount, due_date 
+<?php
+$projections = $pdo->prepare("SELECT payee, payment_amount, due_date 
                                   FROM budget_projection
                                   WHERE due_date >= date_trunc('day', CURRENT_DATE) AND due_date <= NOW() + INTERVAL '2 months'
                                   ORDER BY due_date, payment_amount DESC;");
-    $projections->execute();
-    ?>
+$projections->execute();
+?>
 
-    <!-- Current Projections -->
-    <form name="display" action="" method="POST">
-        <div class="row">
-            <div class="column left">
-                <center><button type="submit" id="update_projection" name="projection_update" class="button" value="submit" />Update Budget Projections</button></center>
-                <center><button type="reset" class="button">Reset the Form</button></center>
-                </br></br>
-            </div>
-            <table class="table_totals">
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Expense</th>
-                    <th>Deposit</th>
-                    <th style='background-color:#000000'></th>
-                    <th>Correct Date</th>
-                    <th>Correct Amount</th>
-                    <!-- <th>Delete Entry</th> -->
-                </tr>
-                <?php
-                while ($row = $projections->fetch()) {
-                    $purchase_date = date('d-M-Y', strtotime($row['due_date']));
-                    echo "<tr>";
-                        echo "<td>" . $purchase_date . "</td>";
-                        echo "<input type='hidden' name='due_date[]' value='" . $row['due_date'] . "'>";
-                        echo "<td>" .  $row['payee'] . "</td>";
-                        echo "<input type='hidden' name='payee[]' value='" . $row['payee'] . "'>";
+<!-- Current Projections -->
+<form class="form1" name="display" action="" method="POST">
+    <div class="item1">
+        <button type="submit" id="transaction_button" class="button" name="projection_update" value="submit" />Update Budget Projections</button>
+    </div>
+    <div class="item2">
+        <button type="reset" id="transaction_button" class="button">Reset the Form</button>
+    </div>
+    <div class="item3">
+        <table class="table_totals">
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Expense</th>
+                <th>Deposit</th>
+                <th style='background-color:#000000'></th>
+                <th>Correct Date</th>
+                <th>Correct Amount</th>
+                <!-- <th>Delete Entry</th> -->
+            </tr>
+            <?php
+            while ($row = $projections->fetch()) {
+                $purchase_date = date('d-M-Y', strtotime($row['due_date']));
+                echo "<tr>";
+                echo "<td>" . $purchase_date . "</td>";
+                echo "<input type='hidden' name='due_date[]' value='" . $row['due_date'] . "'>";
+                echo "<td>" .  $row['payee'] . "</td>";
+                echo "<input type='hidden' name='payee[]' value='" . $row['payee'] . "'>";
 
-                        $transaction = $row['payment_amount'];
+                $transaction = $row['payment_amount'];
 
-                        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-                        $transaction_amount = $money->formatCurrency($transaction, 'USD');
+                $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+                $transaction_amount = $money->formatCurrency($transaction, 'USD');
 
-                        if ($row['payment_amount'] < 0) {
-                            echo "<td style='color:red'>" . $transaction_amount . "</td>" . "<td>" . "</td>";
-                        } else {
-                            echo "<td>" . "</td>" . "<td>" . $transaction_amount . "</td>";
-                        }
-                        echo "<input type='hidden' name='payment_amount[]' value='" . $row['payment_amount'] . "'>";
-
-                        echo "<td style='background-color:#000000'></td><";
-                        echo "td> <center><input id='textboxid' name='date_correction[]' placeholder='Date Correction' type='date' /></center> </td>";
-                        echo "<td> <center><input id='textboxid' name='corrected_amount[]' placeholder='Correct Amount' type='text' /></center> </td>";
-                    echo "</tr>";
+                if ($row['payment_amount'] < 0) {
+                    echo "<td style='color:red'>" . $transaction_amount . "</td>" . "<td>" . "</td>";
+                } else {
+                    echo "<td>" . "</td>" . "<td>" . $transaction_amount . "</td>";
                 }
-                ?>
-            </table>
-        </div>
-    </form>
-</div>
+                echo "<input type='hidden' name='payment_amount[]' value='" . $row['payment_amount'] . "'>";
+
+                echo "<td style='background-color:#000000'></td><";
+                echo "td> <center><input id='textboxid' name='date_correction[]' placeholder='Date Correction' type='date' /></center> </td>";
+                echo "<td> <center><input id='textboxid' name='corrected_amount[]' placeholder='Correct Amount' type='text' /></center> </td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
+</form>
 
 <!-- Update Budget Projection Database -->
 <?php
@@ -89,7 +88,7 @@ if (isset($_POST['projection_update'])) {
 
     for ($i = 0; $i < $size; ++$i) {
         if ($corrected_amount[$i] <> '' or $date_correction[$i] <> '') {
-            
+
             if ($date_correction[$i] == '') {
                 $date = $due_date[$i];
             } else {
@@ -115,11 +114,10 @@ if (isset($_POST['projection_update'])) {
             $update_projection->execute(['date_due' => $date, 'amount_due' => $payment, 'pay_to' => $payee_to, 'original_date' => $original_date]);
         }
     }
-   
+
     echo
     "<script> 
         window.location.href='monthly_projection.php'
     </script>";
 }
 ?>
-<br><br>
