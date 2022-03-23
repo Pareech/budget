@@ -43,11 +43,8 @@ $cc_check->execute();
         </div>
 
         <div class="item4">
-            <br><br><br>
-            <button type="submit" id="transaction_button" name="check_cc" class="button" value="submit">Submit<br>Action</button>
+            <button type="submit" id="transaction_button" name="check_cc" class="button" value="submit">Validate<br>Transactions</button>
         </div>
-
-        <!-- </div> -->
 </form>
 
 <?php
@@ -83,7 +80,7 @@ if (isset($_POST['check_cc'])) {
         <table class='table'>
             <tr>
                 <th colspan="4" ; class='heading'>
-                    <?php echo $cc . "<br>Monthly Charges: " .$cc_sum; ?>
+                    <?php echo $cc . "<br>Monthly Charges: " . $cc_sum; ?>
                 </th>
             </tr>
             <tr>

@@ -6,20 +6,22 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background-color: lightgrey;
+    background-color: #D3D3D3;
 }
 
 /* Header/logo Title */
 .header {
     padding: 2px;
     text-align: center;
-    background: black;
-    color: white;
+    background: #000000;
+    color: #ffffff;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+  grid-template-columns: auto auto;
+  column-gap: 150px;
   padding: 10px;
 }
 
@@ -30,24 +32,11 @@ body {
 
  .item1 {
   grid-area: 1 / 1;
-
 }
 
 .item2 {
-  grid-area: 1 / 2;
+  padding-left: 15px
 }
-
-/* .item3 {
-  grid-area: 2 / 1;
-}
-
-.item4 {
-  grid-area: 2 / 2;
-}
-
-.item5 {
-  grid-area: 1 / 3 / span 4;
-} */
 
 .dropmenus {
     width: 120px;
@@ -83,7 +72,6 @@ table {
 
   th {
     background: rgba(112, 245, 156, 0.8);
-  
   }
   
   th.heading {
