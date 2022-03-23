@@ -44,71 +44,72 @@ foreach ($monthly_expenses as $row) {
 
 $elements = count($monthArray);
 ?>
-
-<div class="grid-container_total" ; id="grid_monthly">
-    <br>
-    <?php
-    for ($i = 0; $i < $elements; $i++) {
-        echo
-        "<div class='item' style='background-color:#FF6700; color:#663399'>
+<div class="padding_top">
+    <div class="grid-container_total" ; id="grid_monthly">
+        <br>
+        <?php
+        for ($i = 0; $i < $elements; $i++) {
+            echo
+            "<div class='item' style='background-color:#FF6700; color:#663399'>
             $monthArray[$i]
         </div>";
-    }
-    ?>
-</div>
-
-<div class="grid-container_total" ; id="grid_format">
-    <div class='item' style='background-color:#05C3DD'>
-        Income
+        }
+        ?>
     </div>
-    <?php
-    for ($i = 0; $i < $elements; $i++) {
-        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-        $monthly_deposits = $money->formatCurrency($totalIncomeArray[$i], 'USD');
-        echo
-        "<div class='item' style='background-color:#ECF2E0'>
+
+    <div class="grid-container_total" ; id="grid_format">
+        <div class='item' style='background-color:#05C3DD'>
+            Income
+        </div>
+        <?php
+        for ($i = 0; $i < $elements; $i++) {
+            $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+            $monthly_deposits = $money->formatCurrency($totalIncomeArray[$i], 'USD');
+            echo
+            "<div class='item' style='background-color:#ECF2E0'>
             $monthly_deposits
         </div>";
-    }
-    ?>
-</div>
-
-<div class="grid-container_total" ; id="grid_format">
-    <div class='item' style='background-color:#05C3DD'>
-        Expense
+        }
+        ?>
     </div>
-    <?php
-    for ($i = 0; $i < $elements; $i++) {
-        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-        $monthly_spending = $money->formatCurrency($totalExpenseArray[$i] * -1, 'USD');
-        echo
-        "<div class='item' style='background-color:#ECF2E0'>
+
+    <div class="grid-container_total" ; id="grid_format">
+        <div class='item' style='background-color:#05C3DD'>
+            Expense
+        </div>
+        <?php
+        for ($i = 0; $i < $elements; $i++) {
+            $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+            $monthly_spending = $money->formatCurrency($totalExpenseArray[$i] * -1, 'USD');
+            echo
+            "<div class='item' style='background-color:#ECF2E0'>
             $monthly_spending
         </div>";
-    }
-    ?>
-</div>
-
-<div class="grid-container_total" ; id="grid_format">
-    <div class='item' style='background-color:#05C3DD'>
-        Monthly Net
-    </div>
-    <?php
-    for ($i = 0; $i < $elements; $i++) {
-        $find_monthly_net = $totalIncomeArray[$i] + $totalExpenseArray[$i];
-        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-        $monthly_net = $money->formatCurrency($find_monthly_net, 'USD');
-
-        if ($find_monthly_net > 0) {
-            $monthly_net = '<span style="color:#089000;">' . $monthly_net . '</span>';
-        } else {
-            $monthly_net = '<span style="color:#FF0000;">' . $monthly_net . '</span>';
         }
+        ?>
+    </div>
 
-        echo
-        "<div class='item' style='background-color:#ECF2E0'>
+    <div class="grid-container_total" ; id="grid_format">
+        <div class='item' style='background-color:#05C3DD'>
+            Monthly Net
+        </div>
+        <?php
+        for ($i = 0; $i < $elements; $i++) {
+            $find_monthly_net = $totalIncomeArray[$i] + $totalExpenseArray[$i];
+            $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+            $monthly_net = $money->formatCurrency($find_monthly_net, 'USD');
+
+            if ($find_monthly_net > 0) {
+                $monthly_net = '<span style="color:#089000;">' . $monthly_net . '</span>';
+            } else {
+                $monthly_net = '<span style="color:#FF0000;">' . $monthly_net . '</span>';
+            }
+
+            echo
+            "<div class='item' style='background-color:#ECF2E0'>
             $monthly_net
         </div>";
-    }
-    ?>
+        }
+        ?>
+    </div>
 </div>

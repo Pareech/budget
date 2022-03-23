@@ -78,7 +78,7 @@ $month_year = date('F Y', strtotime('now'));
 
 <?php
 if ($dbname == 'budget_dev') {
-  echo "On Dev Environment<br><br>";
+  echo "On Dev Environment";
 }
 
 include 'finance_details/monthly_totals.php';

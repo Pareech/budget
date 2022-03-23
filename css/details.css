@@ -22,32 +22,43 @@ body {
   font-size: 40px;
 }
 
+.padding_top {
+  padding-top: 35px;
+}
+
+.padding_bottom {
+  padding-bottom: 35px;
+}
+
 .grid-container_total {
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(auto-fill, 22px);
-  grid-row-gap: .5em;
-  grid-column-gap: 1em;
+  row-gap: .5em;
+  column-gap: 1em;
+  padding-left: 45px;
+  padding-right: 50px;
 }
 
 .grid-container_avg {
   padding-top: 66px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(auto-fill, auto);
-  grid-row-gap: .9em;
-  grid-column-gap: 1em;
+  row-gap: .9em;
+  column-gap: 1em;
 }
 
 .grid-container_predictions {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(auto-fill, auto);
-  grid-row-gap: .5em;
-  grid-column-gap: 1em;
+  row-gap: .5em;
+  column-gap: 1em;
 }
 
 .grid-container_total>div, .grid-container_avg>div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   border: 1px solid #000;
+  
 }
 
 #grid_format {
