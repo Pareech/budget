@@ -18,7 +18,6 @@ $month_year = date('F Y', strtotime('now'));
       <a> --------- </a>
       <a href='../projections/create_projections.php?generating=Expense'>Generate Expense Projection Series</a>
       <a href='../projections/create_projections.php?generating=Income'>Generate Income Projection Series</a>
-      <a href='../projections/update_monthly_projection.php'>Update Projections</a>
     </div>
   </div>
   <div class="dropdown">
@@ -63,6 +62,14 @@ $month_year = date('F Y', strtotime('now'));
     <div class="dropdown-content">
       <a href='../finance_details/payment_updates.php'>Update Payment Entry</a>
       <a href='../projections/update_monthly_projection.php'>Update Monthly Projections</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button style="color:#FFFF00" class="dropbtn">USD Account</button>
+    <div class="dropdown-content">
+      <a  href='../usd/buy_usd.php'>Buy USD</a>
+      <a  href='../usd/sell_usd.php'>Sell USD</a>
+      <a  href='../usd/interest_usd.php'>Interest Earned</a>
     </div>
   </div>
   <a style="color:white" ; text-decoration="none" ; href='../index.php'>Main Page</a>
