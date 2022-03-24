@@ -67,7 +67,7 @@ include '../misc_files/nav_bar_links.php';
 ?>
 
 <form class="form1" name="display" action="" method="POST">
-    <div` class="itemF`">
+    <div class="itemF`">
         <h2>Canadian Dollar</h2>
         <input id="textboxid" name="cdn_amount" placeholder="Amount CDN" type="text" />
     </div>
