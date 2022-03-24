@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: lightgrey;
+}
+
+/* Increase the font size of the heading */
+#header h1 {
+  font-size: 40px;
+  color: white;
+  padding-top: 18px;
+  text-align: center;
+
+}
+
+.grid-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto;
+  gap: 80px;
+  padding-right: 25px;
+  background-color: black;
+}
+
+.item1 {
+  grid-area: 1 / 1;
+  padding-top: 35px;
+}
+
+.item2 {
+  grid-area: 1 / 2;
+}
+
+form {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto;
+  gap: 40px 120px;
+  text-align: center;
+}
+
+.itemF1{
+  grid-area: 1 / 3;
+}
+
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px;
+  border-collapse: collapse;
+  table-layout: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+td {
+  padding: 0.2rem;
+  border: 2px solid black;
+}
+
+#alnright { 
+  text-align: right;
+  color: hotpink;
+  font-weight: bold;
+  background-color: black;
+
+}
+
+#alnleft { 
+  text-align: left;
+  text-indent: 8px;
+  color: white;
+  background-color: black;
+}
+
+#transaction_button {
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  height: 50px;
+  width: 150px;
+  margin-top: 45px;
+}
+
+#textboxid {
+  height: 25px;
+  text-align: center;
+  border: 0px none;
+  width: 150px;
+}
