@@ -17,15 +17,16 @@ include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
 
 // Get amount to transfer for each expense type enveloppe
-$who_trsf = $pdo->prepare("SELECT e.item_purchased AS item,
+$who_trsf = $pdo->prepare("SELECT c.expense_category AS category, e.item_purchased AS item,
                                   CASE WHEN e.item_purchased = 'Mortgage' THEN round(sum(e.amount) / count(e.amount) * 2 / 2, 2)
+                                       WHEN e.item_purchased SIMILAR TO '%Dollar%|%RRSP%|%RESP%' THEN round(sum(e.amount) / count(e.amount), 2)
                                        ELSE round(sum(e.amount) / 12 / 2, 2)
                                   END AS trsfamount
                            FROM expenses AS e
                            JOIN expense_categories AS c
                            ON e.item_purchased = c.expense_name
                            WHERE e.purchase_date > NOW() - INTERVAL '1 year' AND e.purchase_date < NOW() AND c.account_trsf SIMILAR TO :who
-                           GROUP BY e.item_purchased
+                           GROUP BY e.item_purchased, c.expense_category
                            ORDER BY e.item_purchased;");
 $who_trsf->execute(['who' => '%' . $who . '%']);
 
@@ -46,12 +47,14 @@ $trsf_sum->execute(['who' => '%' . $who . '%']);
         <table class='table'>
             <tr>
                 <th>Item</th>
+                <th>Category</th>
                 <th>Amount</th>
             </tr>
 
             <?php
             foreach ($who_trsf as $row) {
                 $item = $row['item'];
+                $category = $row['category'];
                 $trsfamount = $row['trsfamount'];
 
                 $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
@@ -59,6 +62,7 @@ $trsf_sum->execute(['who' => '%' . $who . '%']);
 
                 echo "<tr>";
                     echo "<td>" . $item . "</td>";
+                    echo "<td>" . $category . "</td>";
                     echo "<td>" . $trsfamount . "</td>";
                 echo "</tr>";
             }
@@ -68,7 +72,7 @@ $trsf_sum->execute(['who' => '%' . $who . '%']);
     <div class="item2">
         <table class='table'>
             <tr>
-                <th>Category</th>
+                <th>Category Totals</th>
                 <th>Amount</th>
             </tr>
 
@@ -76,6 +80,10 @@ $trsf_sum->execute(['who' => '%' . $who . '%']);
             foreach ($trsf_sum as $row) {
                 $category = $row['category'];
                 $sumamount = $row['amount'];
+
+                if ($category == 'Housing') {
+                    $sumamount += 555.17 / 26 * 2;
+                }
 
                 $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
                 $sumamount = $money->formatCurrency($sumamount, 'USD');
