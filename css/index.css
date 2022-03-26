@@ -24,7 +24,6 @@ body {
 
 .header h2 {
   font-size: 30px;
-  /* text-align: right; */
 }
 
 .grid-container {
@@ -32,14 +31,7 @@ body {
   justify-content: center;
   grid-template-columns: auto auto;
   background-color: #000000;
-  /* padding: 10px; */
-  /* font-size: 16px; */
 }
-
-/* .grid-container > div {
-  text-align: center;
-  padding: 10px 40px;
-} */
 
 #alnright { 
   text-align: right;
@@ -58,8 +50,7 @@ body {
  .item1 {
   grid-area: 1 / 1;
   padding-right: 25px;
-  padding-top: 18px;
-  /* color:orange; */
+  padding-top: 10px;
 }
 
 .item2 {
