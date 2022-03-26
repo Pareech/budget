@@ -55,7 +55,9 @@ if (isset($_POST['check_cc'])) {
     $end_date = $_POST['end_date'];
 
     if ($end_date == NULL) {
-        $end_date = date("Y-m-d");
+        $end_date = date('Y-m-d', strtotime("+1 day"));
+    } else {
+        $end_date = date('Y-m-d', strtotime($end_date . " +1 day"));
     }
 
     // Get all charges for a credit card period
