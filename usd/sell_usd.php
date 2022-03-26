@@ -52,5 +52,10 @@ if (isset($_POST['sell_usd'])) {
     $buy_usd = $pdo->prepare("INSERT INTO usd_acct(buy_date, withdrawls)
                               VALUES (:buy_date, :withdrawls);");
     $buy_usd->execute(['buy_date' => $date, 'withdrawls' => $withdrawls]);
+
+    echo
+    "<script> 
+        window.location.href='..'
+    </script>";
 }
 ?>
