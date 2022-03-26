@@ -70,7 +70,8 @@ $month_year = date('F Y', strtotime('now'));
   <div class="dropdown">
     <button style="color:#FFFF00" class="dropbtn">Updates</button>
     <div class="dropdown-content">
-      <a href='finance_details/payment_updates.php'>Update Payment Entry</a>
+      <a href='finance_details/enter_month_start.php'>Enter Month Starting Value</a>
+      <a href='finance_details/payment_updates.php'>Modify a Payment Entry</a>
       <a href='projections/update_monthly_projection.php'>Update Monthly Projections</a>
     </div>
   </div>
