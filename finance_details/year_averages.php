@@ -27,9 +27,9 @@ $trans_type->execute();
 $findAvg = $pdo->prepare("SELECT round(AVG(month_total), 2)
                           FROM (SELECT date_trunc('month',due_date), ABS(sum(payment_amount)) AS month_total
                                 FROM budget_projection
-                                WHERE EXTRACT(year FROM due_date) = EXTRACT(year FROM now()) AND 
-                                        EXTRACT(month FROM due_date) <= EXTRACT(MONTH FROM now())
-                                        AND transaction_type = :transactions
+                                WHERE EXTRACT(year FROM due_date) = EXTRACT(year FROM NOW()) AND 
+                                      EXTRACT(month FROM due_date) <= EXTRACT(MONTH FROM NOW()) AND 
+                                      transaction_type = :transactions
                                 GROUP BY DATE_TRUNC('month', due_date)
                         ) AS monthly_avg;");
 
