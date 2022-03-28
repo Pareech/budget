@@ -8,7 +8,7 @@
 $monthlyAvg = 0;
 
 // Get Current Month Numeric Value used for Finding Yearly Net
-$month_number = $pdo->query("SELECT date_part('month', now())")->fetchColumn();
+// $month_number = $pdo->query("SELECT date_part('month', now())")->fetchColumn();
 
 // Get Net Change since Beginning of Current Year
 $get_diff = $pdo->query("SELECT (r2.amount - r1.amount) AS year_amt
@@ -24,14 +24,13 @@ $trans_type = $pdo->prepare("SELECT DISTINCT(transaction_type) AS transaction_ty
 $trans_type->execute();
 
 // Get averages for each type of transactions
-$findAvg = $pdo->prepare("SELECT round(AVG(month_total), 2)
-                          FROM (SELECT date_trunc('month',due_date), ABS(sum(payment_amount)) AS month_total
-                                FROM budget_projection
-                                WHERE EXTRACT(year FROM due_date) = EXTRACT(year FROM NOW()) AND 
-                                      EXTRACT(month FROM due_date) <= EXTRACT(MONTH FROM NOW()) AND 
-                                      transaction_type = :transactions
-                                GROUP BY DATE_TRUNC('month', due_date)
-                        ) AS monthly_avg;");
+$findAvg = $pdo->prepare("SELECT ROUND(AVG(month_total),2)
+                          FROM (SELECT date_trunc('month',due_date), ABS(SUM(payment_amount)) AS month_total
+                                FROM budget_projection 
+                                WHERE due_date > now() - INTERVAL '6 months' 
+                                    AND due_date <= now()
+                                    AND transaction_type = :transactions
+                                GROUP BY date_trunc('month', due_date)) AS month_total;");
 
 foreach ($trans_type as $row) {
     $transaction = $row['transaction_type'];
@@ -69,8 +68,9 @@ if ($get_diff < 0) {
 <!-- Display Averages and totals -->
 <h3>
     <div class="item1">
-        <table class='table'>
+        <table>
             <tr>
+                <td rowspan=3; style='width:100px; background-color:#000000' ;> Last 6<br>Months
                 <td id=alnright>Average Income</td>
                 <td id=alnleft><?php echo $income; ?></td>
             </tr>
@@ -84,11 +84,12 @@ if ($get_diff < 0) {
                 <td id=alnright>Monthly Average</td>
                 <td id=alnleft><?php echo $monthly_avg; ?></td>
             </tr>
-
             <tr>
+                <td style='background-color:#000000' ;></td>
                 <td id=alnright>Year Net</td>
                 <td id=alnleft><?php echo $year_net; ?></td>
             </tr>
+            </td>
         </table>
     </div>
 </h3>
