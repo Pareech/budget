@@ -93,3 +93,4 @@ if ($dbname == 'budget_dev') {
 include 'finance_details/monthly_totals.php';
 include 'finance_details/averages.php';
 ?>
+<br><br><br>

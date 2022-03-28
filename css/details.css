@@ -40,11 +40,13 @@ body {
 }
 
 .grid-container_avg {
-  padding-top: 66px;
+  padding-top: 65px;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(auto-fill, auto);
-  row-gap: .9em;
-  column-gap: 1em;
+  /* grid-template-rows: repeat(auto-fill, auto); */
+  grid-template-rows: 100px;
+  /* row-gap: .9em; */
+  /* column-gap: 1em; */
+  /* padding-bottom: 135px; */
 }
 
 .grid-container_predictions {
@@ -58,7 +60,6 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   border: 1px solid #000;
-  
 }
 
 #grid_format {
@@ -73,7 +74,6 @@ body {
   background-color: lightgrey;
   font-weight: bold;
 }
-
 
 #grid_format_projection {
   width: 80%;
