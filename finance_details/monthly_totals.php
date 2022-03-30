@@ -61,9 +61,11 @@ $elements = count($monthArray);
         <div class='item' style='background-color:#05C3DD'>
             Income
         </div>
+
         <?php
+        $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
+
         for ($i = 0; $i < $elements; $i++) {
-            $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
             $monthly_deposits = $money->formatCurrency($totalIncomeArray[$i], 'USD');
             echo
             "<div class='item' style='background-color:#ECF2E0'>

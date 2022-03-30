@@ -7,9 +7,6 @@
 
 $monthlyAvg = 0;
 
-// Get Current Month Numeric Value used for Finding Yearly Net
-// $month_number = $pdo->query("SELECT date_part('month', now())")->fetchColumn();
-
 // Get Net Change since Beginning of Current Year
 $get_diff = $pdo->query("SELECT (r2.amount - r1.amount) AS year_amt
                             FROM monthly_variance AS r1 CROSS JOIN
@@ -49,12 +46,10 @@ foreach ($trans_type as $row) {
     $monthlyAvg += $getAvg;
 }
 
-$monthly_avg = $money->formatCurrency($monthlyAvg, 'USD');
-
 if ($monthlyAvg < 0) {
-    $monthly_avg = '<span style="color:#FF0000; ">' . $monthly_avg . '</span>';
+    $monthly_avg = '<span style="color:#FF0000; ">' . $money->formatCurrency($monthlyAvg, 'USD') . '</span>';
 } else {
-    $monthly_avg = '<span style="color:#00FF00;">' . $monthly_avg . '</span>';
+    $monthly_avg = '<span style="color:#00FF00;">' . $money->formatCurrency($monthlyAvg, 'USD') . '</span>';
 }
 
 if ($get_diff < 0) {
