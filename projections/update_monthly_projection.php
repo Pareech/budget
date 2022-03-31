@@ -10,17 +10,15 @@
 
 
 <?php
-
 include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
-
 ?>
 
 <?php
 $projections = $pdo->prepare("SELECT payee, payment_amount, due_date 
-                                  FROM budget_projection
-                                  WHERE due_date >= date_trunc('day', CURRENT_DATE) AND due_date <= NOW() + INTERVAL '2 months'
-                                  ORDER BY due_date, payment_amount DESC;");
+                              FROM budget_projection
+                              WHERE due_date >= date_trunc('day', CURRENT_DATE) AND due_date <= NOW() + INTERVAL '2 months'
+                              ORDER BY due_date, payment_amount DESC;");
 $projections->execute();
 ?>
 
@@ -112,9 +110,24 @@ if (isset($_POST['projection_update'])) {
                                                     payment_amount = :amount_due
                                                 WHERE payee = :pay_to AND due_date = :original_date;");
             $update_projection->execute(['date_due' => $date, 'amount_due' => $payment, 'pay_to' => $payee_to, 'original_date' => $original_date]);
+
+            // Update Income or Expense Database
+            if ($payment > 0) {
+                $update_income = $pdo->prepare("UPDATE income
+                                                SET deposit_date = :deposit_date,
+                                                    deposit_amount = :amount
+                                                WHERE note = :item AND deposit_date = :original_date;");
+                $update_income->execute(['deposit_date' => $date, 'amount' => $payment, 'item' => $payee_to, 'original_date' => $original_date]);
+            } else {
+                $payment *= -1;
+                $update_expenses = $pdo->prepare("UPDATE expenses
+                                                  SET purchase_date = :buy_date,
+                                                      amount = :amount_due
+                                                  WHERE item_purchased = :item AND purchase_date = :original_date;");
+                $update_expenses->execute(['buy_date' => $date, 'amount_due' => $payment, 'item' => $payee_to, 'original_date' => $original_date]);
+            }
         }
     }
-
     echo
     "<script> 
         window.location.href='monthly_projection.php'
