@@ -25,9 +25,11 @@ $findAvg = $pdo->prepare("SELECT ROUND(AVG(month_total),2)
                           FROM (SELECT date_trunc('month',due_date), ABS(SUM(payment_amount)) AS month_total
                                 FROM budget_projection 
                                 WHERE due_date > now() - INTERVAL '6 months' 
-                                    AND due_date <= now()
+                                    AND date_trunc('month', due_date) <= date_trunc('month', now())
+                                    AND date_trunc('year' , due_date) <= date_trunc('year',  now())
                                     AND transaction_type = :transactions
-                                GROUP BY date_trunc('month', due_date)) AS month_total;");
+                                GROUP BY date_trunc('month', due_date)
+                                ) AS month_total;");
 
 foreach ($trans_type as $row) {
     $transaction = $row['transaction_type'];
