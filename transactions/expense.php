@@ -35,7 +35,7 @@ $cc_charges->execute();
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item">
+        <div>
             <h2>Expense</h2>
             <select id="textboxid" name="expense" value='' class=dropmenus></option>
                 <option value=""></option>
@@ -52,7 +52,7 @@ $cc_charges->execute();
                 ?>
             </select>
         </div>
-        <div class="item">
+        <div>
             <h2>Credit Card</h2>
             <select id="textboxid" name="card" value='' class=dropmenus></option>
                 <option value=""></option>
@@ -63,23 +63,23 @@ $cc_charges->execute();
                 ?>
             </select>
         </div>
-        <div class="item">
+        <div>
             <h2>Amount</h2>
             <input id="textboxid" name="cost" placeholder="Expense Amount" type="text" />
         </div>
-        <div class="item">
+        <div>
             <h2>Date</h2>
             <input type="date" id="textboxid" name="date" />
         </div>
-        <div class="item">
+        <div>
             <h2>Note</h2>
             <input type="text" id="textboxid" name="note" />
         </div>
-        <div class="item">
+        <div>
             <h2>Add Projection</h2>
             <input type="checkbox" name="add_projection" value="yes">
         </div>
-        <div class="item">
+        <div>
             <br><br><br>
             <button type="submit" id="transaction_button" name="submit_expense" class="button" value="submit">Submit<br>Expense</button>
         </div>
@@ -139,7 +139,7 @@ if (isset($_POST['submit_expense'])) {
             }
             include '../projections/enter_projections_db.php';
         }
-        echo "<script> window.location.href='../index.php'</script>";
+        echo "<script> window.location.href='..' </script>";
     }
 }
 ?>

@@ -18,19 +18,22 @@ include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
 ?>
 
-<form class="form1" name="display" action="" method="POST">
-    <div class="itemF">
-        <h2>Month Starting Value</h2>
-        <input id="textboxid" name="start_value" placeholder="Month Starting Value" type="text" />
-    </div>
+<form name="display" action="" method="POST">
+    <div class="grid-container_bottom">
 
-    <div class="itemF">
-        <h2>Date</h2>
-        <input type="date" id="textboxid" name="date" />
-    </div>
+        <div class="item3">
+            <h2>Month Starting Value</h2>
+            <input id="textboxid" name="start_value" placeholder="Month Starting Value" type="text" />
+        </div>
 
-    <div class="itemF1">
-        <button type="submit" id="transaction_button" name="month_start" class="button" value="submit">Add Month<br>Starting Value</button>
+        <div class="item4">
+            <h2>Date</h2>
+            <input type="date" id="textboxid" name="date" />
+        </div>
+
+        <div class="item5a">
+            <button type="submit" id="transaction_button" name="month_start" class="button" value="submit">Add Month<br>Starting Value</button>
+        </div>
     </div>
 </form>
 
@@ -43,9 +46,6 @@ if (isset($_POST['month_start'])) {
                               VALUES (:date, :monthly_start);");
     $buy_usd->execute(['date' => $date, 'monthly_start' => $start_value]);
 
-    echo
-    "<script> 
-        window.location.href='..'
-    </script>";
+    echo "<script> window.location.href='..' </script>";
 }
 ?>

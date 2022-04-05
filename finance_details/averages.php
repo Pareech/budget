@@ -7,7 +7,6 @@
 <div class="grid-container_avg" ; id="grid_format">
 
     <?php
-
     $categories = $pdo->prepare("SELECT DISTINCT expense_type FROM expense_categories;");
     $categories->execute();
 

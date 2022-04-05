@@ -23,7 +23,7 @@ $projections->execute();
 ?>
 
 <!-- Current Projections -->
-<form class="form1" name="display" action="" method="POST">
+<form class="grid-container" name="display" action="" method="POST">
     <div class="item1">
         <button type="submit" id="transaction_button" class="button" name="projection_update" value="submit" />Update Budget Projections</button>
     </div>
@@ -31,7 +31,7 @@ $projections->execute();
         <button type="reset" id="transaction_button" class="button">Reset the Form</button>
     </div>
     <div class="item3">
-        <table class="table_totals">
+        <table>
             <tr>
                 <th>Date</th>
                 <th>Description</th>
@@ -40,7 +40,6 @@ $projections->execute();
                 <th style='background-color:#000000'></th>
                 <th>Correct Date</th>
                 <th>Correct Amount</th>
-                <!-- <th>Delete Entry</th> -->
             </tr>
             <?php
             while ($row = $projections->fetch()) {
@@ -57,7 +56,7 @@ $projections->execute();
                 $transaction_amount = $money->formatCurrency($transaction, 'USD');
 
                 if ($row['payment_amount'] < 0) {
-                    echo "<td style='color:red'>" . $transaction_amount . "</td>" . "<td>" . "</td>";
+                    echo "<td style='color:#FF0000'>" . $transaction_amount . "</td>" . "<td>" . "</td>";
                 } else {
                     echo "<td>" . "</td>" . "<td>" . $transaction_amount . "</td>";
                 }
