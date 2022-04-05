@@ -34,6 +34,7 @@ $month_year = date('F Y', strtotime('now'));
     <div class="dropdown-content">
       <a href='../transactions/expense.php?exp=Groceries'>Groceries</a>
       <a href='../transactions/expense.php?exp=Housing'>Housing</a>
+      <a href='../transactions/expense.php?exp=Investment'>Investments</a>
       <a href='../transactions/expense.php?exp=Leisure'>Leisure</a>
       <a href='../transactions/expense.php?exp=Loan'>Loans</a>
       <a href='../transactions/expense.php?exp=Other'>Misc. Expenses</a>
