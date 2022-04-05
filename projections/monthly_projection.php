@@ -40,6 +40,8 @@ include '../misc_files/nav_bar_links.php';
 
             if ($monthly_total < 0) {
                 $net_total = '<span style="color:#FF0000;">' . $net_total;
+            } else {
+                $net_total = '<span style="color:#006400;">' . $net_total;
             }
             ?>
 
