@@ -40,11 +40,13 @@ $trsf_sum = $pdo->prepare("SELECT e.category AS category, round(sum(e.amount) / 
                            GROUP BY e.category
                            ORDER BY e.category;");
 $trsf_sum->execute(['who' => '%' . $who . '%']);
+
+$money = new NumberFormatter('en', NumberFormatter::CURRENCY);
 ?>
 
 <div class="grid-container">
-    <div class="item1">
-        <table class='table'>
+    <div>
+        <table class='table1'>
             <tr>
                 <th>Item</th>
                 <th>Category</th>
@@ -57,20 +59,17 @@ $trsf_sum->execute(['who' => '%' . $who . '%']);
                 $category = $row['category'];
                 $trsfamount = $row['trsfamount'];
 
-                $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-                $trsfamount = $money->formatCurrency($trsfamount, 'USD');
-
                 echo "<tr>";
                     echo "<td>" . $item . "</td>";
                     echo "<td>" . $category . "</td>";
-                    echo "<td>" . $trsfamount . "</td>";
+                    echo "<td>" . $money->formatCurrency($trsfamount, 'USD') . "</td>";
                 echo "</tr>";
             }
             ?>
         </table>
     </div>
-    <div class="item2">
-        <table class='table'>
+    <div>
+        <table class='table2'>
             <tr>
                 <th>Category Totals</th>
                 <th>Amount</th>
@@ -79,18 +78,15 @@ $trsf_sum->execute(['who' => '%' . $who . '%']);
             <?php
             foreach ($trsf_sum as $row) {
                 $category = $row['category'];
-                $sumamount = $row['amount'];
+                $sum_amount = $row['amount'];
 
-                if ($category == 'Housing') {
-                    $sumamount += 555.17 / 26 * 2;
+                if ($category == 'Housing' AND $who == 'Isabelle') {
+                    $sum_amount += 555.17 / 26 * 2;
                 }
-
-                $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
-                $sumamount = $money->formatCurrency($sumamount, 'USD');
 
                 echo "<tr>";
                     echo "<td>" . $category . "</td>";
-                    echo "<td>" . $sumamount . "</td>";
+                    echo "<td>" . $money->formatCurrency($sum_amount, 'USD') . "</td>";
                 echo "</tr>";
             }
             ?>

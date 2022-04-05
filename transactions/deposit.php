@@ -15,19 +15,19 @@ include '../misc_files/nav_bar_links.php';
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item">
-            <h2>Who</h2>
+        <div>
+            <h2>Depositor</h2>
             <input id="textboxid" name="who" placeholder="Depositor" type="text" />
         </div>
 
-        <div class="item">
+        <div>
             <h2>Amount</h2>
             <input id="textboxid" name="deposit" placeholder="Deposit Amount" type="text" />
         </div>
 
-        <div class="item">
+        <div>
             <h2>Deposit Source</h2>
-            <input type="text" list="deposit_type" name="deposit_source" />
+            <input type="text" id="textboxid" list="deposit_type" name="deposit_source" />
             <datalist id="deposit_type">
                 <option value=""></option>
                 <option value='Ian Salary'>Ian Salary</option>
@@ -36,12 +36,12 @@ include '../misc_files/nav_bar_links.php';
             </datalist>
         </div>
 
-        <div class="item">
+        <div>
             <h2>Date</h2>
             <input type="date" id="textboxid" name="date" />
         </div>
 
-        <div class="item">
+        <div>
             <br><br><br>
             <button type="submit" id="transaction_button" name="submit_deposit" class="button" value="submit">Submit<br>Deposit</button>
         </div>
@@ -79,6 +79,7 @@ if (isset($_POST['submit_deposit'])) {
                                   VALUES (:deposit_amt, :depositor, :deposit_date, :deposit_source);");
         $deposit->execute(['deposit_amt' => $payment_amount, 'depositor' => $payee, 'deposit_date' => $date, 'deposit_source' => $deposit_source]);
 
+        $payee = $deposit_source;
         include '../projections/enter_projections_db.php';
     }
 }

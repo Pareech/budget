@@ -9,44 +9,12 @@ body {
   background-color: lightgrey;
 }
 
-/* Header/logo Title */
-.header {
-  padding: 2px;
-  text-align: center;
-  background: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-}
-
-/* Increase the font size of the heading */
-.header h1 {
-  font-size: 40px;
-}
-
-.grid-container_total {
-  padding-top: 66px;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(auto-fill, 1fr);
-  grid-row-gap: .9em;
-  grid-column-gap: 1em;
-}
-
-.grid-container_tot>div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  border: 1px solid #000;
-}
-
-#grid_format {
-  width: 100%;
+.grid-container {
   display: grid;
-  background-color: lightgrey;
-}
-
-form {
-  display: grid;
+  padding-top: 3.438rem;
   justify-content: center;
-  grid-template-columns: 400px 450px;
-  grid-gap: 10px 50px;
+  grid-template-columns: auto auto;
+  gap: 3.25rem 3.25rem;
   text-align: center;
 }
 
@@ -55,48 +23,51 @@ form {
 }
 
 .item2 {
-  grid-area: 1 / 2;
+  grid-area: 2 / 1;
 }
 
 .item3 {
-  grid-area: 2 / 1;
-  padding-top: 35px;
-  padding-bottom: 35px;
+  grid-area: 1 / 2 / span 3 / span 4;
+  padding-bottom: 4.125rem;
 }
 
 table {
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid black;
+  border: 0.125rem solid #000000;
   border-collapse: collapse;
   table-layout: center;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-table.table_totals {
-  width: 900px;
+  background-color: #FFFFFF;
+  width: 56.25rem;
 }
 
 th {
-  background: rgba(112, 245, 156, 0.8);
-
+  background: #70f59c;
+  height: 3.25rem;
 }
 
 th.heading {
-  background: rgba(84, 144, 235, 0.315);
+  background: #add8e6;
 }
 
 th, td {
-  padding: 0.2rem;
-  border: 2px solid black;
+  padding: 0.313rem;
+  border: 0.125rem solid #000000;
+  opacity: 0.8;
 }
 
 #transaction_button {
   font-weight: bold;
   text-align: center;
-  font-size: 16px;
-  height: 50px;
-  width: 150px;
-  /* margin-bottom: 20px; */
+  font-size: 1rem;
+  height: 3.25rem;
+  width: 9.375rem;
+}
+
+#textboxid {
+  height: 1.563rem;
+  text-align: center;
+  border: 0rem none;
+  width: 8.438rem;
 }

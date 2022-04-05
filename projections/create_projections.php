@@ -8,9 +8,9 @@
 $doingWhat = $_GET['generating'];
 
 if ($doingWhat == 'Expense') {
-    $title = '<span style="color:red">' . $doingWhat . '</span>';
+    $title = '<span style="color:#FF0000">' . $doingWhat . '</span>';
 } else {
-    $title = '<span style="color:green">' . $doingWhat . '</span>';
+    $title = '<span style="color:#089000">' . $doingWhat . '</span>';
 }
 
 ?>
@@ -30,7 +30,7 @@ $payment_method->execute();
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item">
+        <div>
             <h2>Projection</h2>
             <input type="text" list="list_item" name="source" id="textboxid" />
             <datalist id="list_item">
@@ -53,12 +53,12 @@ $payment_method->execute();
             </datalist>
         </div>
 
-        <div class="item">
+        <div>
             <h2>Amount</h2>
             <input id="textboxid" name="amount" placeholder="amount" type="text" />
         </div>
 
-        <div class="item">
+        <div>
             <h2>Source</h2>
             <input type="text" list="money_source" name="payment_used" id="textboxid" />
             <datalist id="money_source">
@@ -77,27 +77,26 @@ $payment_method->execute();
             </datalist>
         </div>
 
-        <div class="item">
+        <div>
             <h2>Start Date</h2>
             <input type="date" id="textboxid" name="start_date" />
         </div>
 
-        <div class="item">
+        <div>
             <h2>End Date</h2>
             <input type="date" id="textboxid" name="end_date" />
         </div>
 
-        <div class="item">
+        <div>
             <?php if ($doingWhat == 'Expense') {
                 echo
-                 "<h2>Note</h2>
-                  <input type='text' id='textboxid' name='note' />";
+                "<h2>Note</h2>
+                 <input type='text' id='textboxid' name='note' />";
             }
             ?>
         </div>
 
-        <div class="item">
-            <br><br><br>
+        <div>
             <h2>Interval Time</h2>
             <input type="text" list="interval" name="add_interval" id="textboxid" />
             <datalist id="interval">
@@ -105,8 +104,7 @@ $payment_method->execute();
             </datalist>
         </div>
 
-        <div class="item">
-            <br><br><br>
+        <div>
             <h2>Interval Period</h2>
             <select id="textboxid" name="interval_period" value='' class=dropmenus></option>
                 <option value=""></option>
@@ -116,8 +114,7 @@ $payment_method->execute();
         </div>
 
 
-        <div class="item">
-            <br><br><br><br><br>
+        <div class="item1">
             <button type="submit" id="transaction_button" name="submit_amount" class="button" value="submit">Submit<br>Action</button>
         </div>
     </div>

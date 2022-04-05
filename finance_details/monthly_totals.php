@@ -21,10 +21,9 @@ $monthly_expenses = $pdo->prepare("SELECT to_char(due_date, 'YYYY-MM') AS transa
                                    ORDER BY transaction_month; ");
 $monthly_expenses->execute();
 
-$monthArray = array();
-$totalIncomeArray = array();
-$totalExpenseArray = array();
-
+$monthArray = array();  //To store created Month Year (ie Apr 2022)
+$totalIncomeArray = array();  //To store net income for a given month
+$totalExpenseArray = array(); //To store net expenses for a given month
 
 foreach ($monthly_income as $row) {
     $month =  $row['transaction_month'];
@@ -44,6 +43,7 @@ foreach ($monthly_expenses as $row) {
 
 $elements = count($monthArray);
 ?>
+
 <div class="padding_top">
     <div class="grid-container_total" ; id="grid_monthly">
         <br>

@@ -9,49 +9,41 @@ body {
   background-color: lightgrey;
 }
 
-/* Header/logo Title */
-.header {
-  padding: 2px;
-  text-align: center;
-  background: black;
-  color: white;
-}
-
-/* Increase the font size of the heading */
-.header h1 {
-  font-size: 40px;
-}
-
-.dropmenus {
-  width:120px; 
-  height:25px;
-}
-
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(auto-fill, 135px);
+  gap: 3.25rem 6.875rem;
+  padding-top: 2.188rem;
+  text-align: center;
+  justify-content: center;
+  grid-template-columns: auto auto auto;
   background-color: lightgrey;
 }
 
-.grid-container > div {
-  text-align: center;
+/* For Projections Page Buton */
+.item1 {
+  padding-top: 3.5rem;
+}
+
+/* For Credit Card Payments Buton */
+.cc_pay {
+  grid-area: 1 / 4;
+  padding-top: 3.5rem;
 }
 
 #textboxid
 {
-  height:25px;
+  height:2.188rem;
   text-align: center;
-  border: 0px none;
-  width: 150px;
+  border: 0rem none;
+  width: 9.375rem;
 }
 
 #transaction_button
 {
   font-weight: bold;
   text-align: center;
-  font-size: 16px;
-  height: 50px; 
-  width:150px;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  height: 3.25rem; 
+  width:9.375rem;
+  margin-bottom: 1.25rem;
 }

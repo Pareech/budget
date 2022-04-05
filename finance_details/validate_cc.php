@@ -15,7 +15,6 @@ include '../misc_files/nav_bar_links.php';
 
 $cc_check = $pdo->prepare("SELECT how_paid FROM payment_method ORDER BY how_paid ASC;");
 $cc_check->execute();
-
 ?>
 
 <form name="display" action="" method="POST">

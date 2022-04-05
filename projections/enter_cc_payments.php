@@ -19,11 +19,12 @@ $payment_method->execute();
 
 <form name="display" action="" method="POST">
     <div class="grid-container">
-        <div class="item">
+        <div>
             <h2>Amount</h2>
             <input id="textboxid" name="amount" placeholder="amount" type="text" />
         </div>
-        <div class="item">
+
+        <div>
             <h2>Source</h2>
             <select id="textboxid" name="payment_used" value='' class=dropmenus></option>
                 <option value=""></option>
@@ -34,16 +35,16 @@ $payment_method->execute();
                 ?>
             </select>
         </div>
-        <div class="item">
+        
+        <div>
             <h2>Date</h2>
             <input type="date" id="textboxid" name="date" />
         </div>
-        <div class="item">
-            <br><br><br>
+        
+        <div class="cc_pay">
             <button type="submit" id="transaction_button" name="submit_amount" class="button" value="submit">Submit<br>Action</button>
         </div>
-        <div class="item">
-        </div>
+
     </div>
 </form>
 

@@ -83,13 +83,16 @@ $month_year = date('F Y', strtotime('now'));
       <a href='usd/interest_usd.php'>Interest Earned</a>
     </div>
   </div>
+  <a style="color:#00f9ff; background-color:#000000" ;>
+    <?php
+    if ($dbname == 'budget_dev') {
+      echo "DEV ENVIRONMENT";
+    }
+    ?>
+  </a>
 </div>
 
 <?php
-if ($dbname == 'budget_dev') {
-  echo "On Dev Environment";
-}
-
 include 'finance_details/monthly_totals.php';
 include 'finance_details/averages.php';
 ?>

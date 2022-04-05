@@ -67,7 +67,7 @@ if ($get_diff < 0) {
     <div class="item1">
         <table>
             <tr>
-                <td rowspan=3; style='width:100px; background-color:#000000' ;> Last 6<br>Months
+                <td rowspan=3; style='width:6.25rem; background-color:#000000' ;> Last 6<br>Months
                 <td id=alnright>Average Income</td>
                 <td id=alnleft><?php echo $income; ?></td>
             </tr>

@@ -12,7 +12,6 @@ $usd_value = $pdo->prepare("SELECT SUM(COALESCE(buy_amt,0)) AS buy_amt,
                                    ROUND(AVG(exch_rate), 4) AS avg_exch,
                                    SUM(COALESCE(interest,0)) AS interest
                             FROM usd_acct;");
-
 ?>
 
 <div class="grid-container">
@@ -28,19 +27,21 @@ $usd_value = $pdo->prepare("SELECT SUM(COALESCE(buy_amt,0)) AS buy_amt,
 include '../misc_files/nav_bar_links.php';
 ?>
 
-<form class="form1" name="display" action="" method="POST">
-    <div class="itemF">
-        <h2>Interest Earned</h2>
-        <input id="textboxid" name="interest_earned" placeholder="Interest Earned" type="text" />
-    </div>
+<form name="display" action="" method="POST">
+    <div class="grid-container_bottom">
+        <div class="item3">
+            <h2>Interest Earned</h2>
+            <input id="textboxid" name="interest_earned" placeholder="Interest Earned" type="text" />
+        </div>
 
-    <div class="itemF">
-        <h2>Date</h2>
-        <input type="date" id="textboxid" name="date" />
-    </div>
+        <div class="item4">
+            <h2>Date</h2>
+            <input type="date" id="textboxid" name="date" />
+        </div>
 
-    <div class="itemF1">
-        <button type="submit" id="transaction_button" name="buy_usd" class="button" value="submit">Add<br>Interest</button>
+        <div class="item5b">
+            <button type="submit" id="transaction_button" name="buy_usd" class="button" value="submit">Add<br>Interest</button>
+        </div>
     </div>
 </form>
 
@@ -53,9 +54,6 @@ if (isset($_POST['buy_usd'])) {
                               VALUES (:buy_date, :interest);");
     $buy_usd->execute(['buy_date' => $date, 'interest' => $interest]);
 
-    echo
-    "<script> 
-        window.location.href='..'
-    </script>";
+    echo "<script> window.location.href='..' </script>";
 }
 ?>

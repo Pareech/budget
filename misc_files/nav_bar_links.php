@@ -68,16 +68,17 @@ $month_year = date('F Y', strtotime('now'));
   <div class="dropdown">
     <button style="color:#FFFF00" class="dropbtn">USD Account</button>
     <div class="dropdown-content">
-      <a  href='../usd/buy_usd.php'>Buy USD</a>
-      <a  href='../usd/sell_usd.php'>Sell USD</a>
-      <a  href='../usd/interest_usd.php'>Interest Earned</a>
+      <a href='../usd/buy_usd.php'>Buy USD</a>
+      <a href='../usd/sell_usd.php'>Sell USD</a>
+      <a href='../usd/interest_usd.php'>Interest Earned</a>
     </div>
   </div>
-  <a style="color:white" ; text-decoration="none" ; href='../index.php'>Main Page</a>
+  <a style="color:#FFFFFF" ; text-decoration="none" ; href='..'>Main Page</a>
+  <a style="color:#00f9ff; background-color:#000000" ;>
+    <?php
+    if ($dbname == 'budget_dev') {
+      echo "DEV ENVIRONMENT";
+    }
+    ?>
+  </a>
 </div>
-
-<?php
-if ($dbname == 'budget_dev') {
-  echo "On Dev Environment";
-}
-?>
