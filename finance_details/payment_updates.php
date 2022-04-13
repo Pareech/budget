@@ -138,7 +138,6 @@ if (isset($_POST['update_payments'])) {
             $update_expenses->execute(['purchase_date' => $date, 'amount_due' => $amount, 'pk' => $primary_key[$i]]);
         }
     }
-
-    // echo  "<script> window.location.href='..' </script>";
+    echo  "<script> window.location.href='..' </script>";
 }
 ?>
