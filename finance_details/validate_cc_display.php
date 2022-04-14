@@ -4,7 +4,7 @@
 <link rel='stylesheet' type='text/css' href='../css/validate_cc.css' />
 <title>Validate CC Date Period</title>
 
-<?php $cc = $_POST['cc_used']; ?>
+<?php $cc = $_POST['cc_used'] ?: 'No Card Chosen'; ?>
 
 <div class='header'>
     <h1><?php echo '<span style="color:#FFA500">' . $cc . '</span>' ?></span><br>Charges Validation</h1>
@@ -18,36 +18,31 @@ include '../misc_files/nav_bar_links.php';
 
 <div class="grid-container">
     <?php
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
-
-    if ($end_date == NULL) {
-        $end_date = date('Y-m-d', strtotime("+1 day"));
-    } else {
-        $end_date = date('Y-m-d', strtotime($end_date . " +1 day"));
-    }
+    $start_date = $_POST['start_date'] ?: date('Y-m-d', strtotime("-1 day"));
+    $end_date = $_POST['end_date'] ?: date('Y-m-d', strtotime("+1 day"));
 
     // Get all charges for a credit card period
     $verify = $pdo->prepare("SELECT item_purchased, amount, purchase_date, note 
-                         FROM expenses
-                         WHERE (purchase_date,purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc
-                         ORDER BY purchase_date;");
+                             FROM expenses
+                             WHERE (purchase_date, purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc
+                             ORDER BY purchase_date;");
     $verify->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
 
     // Sum the amounts for each category of CC period being verified
     $cc_categories = $pdo->prepare("SELECT item_purchased, sum(amount) AS cat_amount
                                     FROM expenses
-                                    WHERE (purchase_date,purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc
-                                    GROUP BY item_purchased;");
+                                    WHERE (purchase_date, purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc
+                                    GROUP BY item_purchased
+                                    ORDER BY item_purchased;");
     $cc_categories->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
 
 
     // Sum all charges for a credit card period
     $cc_charges = $pdo->prepare("SELECT sum(amount) 
-                             FROM expenses
-                             WHERE (purchase_date,purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc;");
+                                 FROM expenses
+                                 WHERE (purchase_date, purchase_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND paid_by = :cc;");
     $cc_charges->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
-    $cc_sum = $cc_charges->fetchColumn();
+    $cc_sum = $cc_charges->fetchColumn() ?? 0;
 
     $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
     $cc_sum = $money->formatCurrency($cc_sum, 'USD');
