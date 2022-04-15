@@ -57,7 +57,7 @@ $projections->execute();
             <?php
             $list_payments = $pdo->prepare("SELECT exp_pk, item_purchased, amount, purchase_date, paid_by, note
                                  FROM expenses
-                                    WHERE purchase_date < CURRENT_DATE AND purchase_date > CURRENT_DATE - 45 
+                                    WHERE purchase_date <= CURRENT_DATE AND purchase_date >= CURRENT_DATE - 45 
                                     AND paid_by = :cc_used
                                  ORDER BY purchase_date desc, amount DESC;");
             $list_payments->execute(['cc_used' => $cc_used]);
