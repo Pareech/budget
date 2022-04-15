@@ -19,7 +19,7 @@ include '../misc_files/nav_bar_links.php';
 <div class="grid-container">
     <?php
     $start_date = $_POST['start_date'] ?: date('Y-m-d', strtotime("-1 day"));
-    $end_date = $_POST['end_date'] ?: date('Y-m-d', strtotime("+1 day"));
+    $end_date = date('Y-m-d', strtotime($_POST['end_date'] . " +1 day")) ?: date('Y-m-d', strtotime("+1 day"));
 
     // Get all charges for a credit card period
     $verify = $pdo->prepare("SELECT item_purchased, amount, purchase_date, note 
