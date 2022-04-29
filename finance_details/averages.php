@@ -33,14 +33,14 @@
 
         <?php
         $get_payments = $pdo->prepare("SELECT item_purchased, 
-                                                round(sum(amount), 2) AS year_spend, 
-                                                round(sum(amount) / 12, 2) AS monthly_avg, 
-                                                round(sum(amount) / 12 / 2, 2) AS bi_monthly_avg,
-                                                count(amount) AS numb_payments
-                                            FROM expenses 
-                                            WHERE purchase_date > NOW() - INTERVAL '1 year' AND purchase_date < NOW() AND kind = :expType
-                                            GROUP BY item_purchased
-                                            ORDER BY item_purchased;");
+                                              round(sum(amount), 2) AS year_spend, 
+                                              round(sum(amount) / 12, 2) AS monthly_avg, 
+                                              round(sum(amount) / 12 / 2, 2) AS bi_monthly_avg,
+                                              count(amount) AS numb_payments
+                                       FROM expenses 
+                                       WHERE purchase_date > NOW() - INTERVAL '1 year' AND purchase_date < NOW() AND kind = :expType
+                                       GROUP BY item_purchased
+                                       ORDER BY item_purchased;");
         $get_payments->execute(['expType' => $type]);
 
         $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
