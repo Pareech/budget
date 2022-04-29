@@ -69,6 +69,32 @@ include '../misc_files/nav_bar_links.php';
 
 </form>
 
+
+<div class="item7">
+    <table class='table_exch'>
+        <tr>
+            <th colspan="4" ; id='th_bottom'>
+                <?php echo "Average of Last<br>10 Rates: $" . $latest_avg; ?>
+            </th>
+        </tr>
+        <tr>
+            <th class="row">Date</th>
+            <th class="row">Exch. Rate</th>
+            <th class="row">Bought</th>
+        </tr>
+
+        <?php
+        foreach ($last_ten as $row) {
+            echo "<tr>";
+            echo "<td id='td_bottom'>" . $row['buy_date'] . "</td>";
+            echo "<td id='td_bottom'>" . $row['exch_rate'] . "</td>";
+            echo "<td id='td_bottom'>" . $row['usd_value'] . "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </table>
+</div>
+
 <?php
 if (isset($_POST['buy_usd'])) {
     $date = $_POST['date'];
@@ -77,35 +103,21 @@ if (isset($_POST['buy_usd'])) {
 
     $exch_rate = round($cdn_amount / $usd_amt, 4);
 
+    // Update USD Table
     $buy_usd = $pdo->prepare("INSERT INTO usd_acct(buy_date, buy_amt, exch_rate, usd_value)
                               VALUES (:buy_date, :buy_amt, :exch_rate, :usd_value);");
     $buy_usd->execute(['buy_date' => $date, 'buy_amt' => $cdn_amount, 'exch_rate' => $exch_rate, 'usd_value' => $usd_amt]);
 
+    // Update Budget Projection Table
+    $update_projection = $pdo->prepare("INSERT INTO budget_projection(payee, payment_amount, due_date, transaction_type, payment_method)
+                                        VALUES ('US Dollar Buy', :cdnAmount, :due_date, 'payment','Interact Transfer');");
+    $update_projection->execute(['cdnAmount'=>$cdn_amount * -1, 'due_date'=> $date]);
+
+    // Update Expenses
+    $update_expenses = $pdo->prepare("INSERT INTO expenses(item_purchased, amount, category, kind, paid_by, purchase_date, note)
+                                      VALUES ('US Dollar Buy', :buy_amt, 'Investment', 'Fixed', 'Interact Transfer', :pay_date, :note);");
+    $update_expenses->execute(['buy_amt' => $cdn_amount, 'pay_date'=>$date, 'note'=>'Exch. Rate: '.$exch_rate]);
+
     echo "<script> window.location.href='..' </script>";
 }
-    ?>
-    <div class="item7">
-        <table class='table_exch'>
-            <tr>
-                <th colspan="4" ; id='th_bottom'>
-                    <?php echo "Average of Last<br>10 Rates: $" . $latest_avg; ?>
-                </th>
-            </tr>
-            <tr>
-                <th class="row">Date</th>
-                <th class="row">Exch. Rate</th>
-                <th class="row">Bought</th>
-            </tr>
-
-            <?php
-            foreach ($last_ten as $row) {
-                echo "<tr>";
-                    echo "<td id='td_bottom'>" . $row['buy_date'] . "</td>";
-                    echo "<td id='td_bottom'>" . $row['exch_rate'] . "</td>";
-                    echo "<td id='td_bottom'>" . $row['usd_value'] . "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </table>
-    </div>
-    </div>
+?>
