@@ -13,7 +13,7 @@
 include '../db_connections/connection_pdo.php';
 include '../misc_files/nav_bar_links.php';
 
-$payment_method = $pdo->prepare("SELECT how_paid FROM payment_method ORDER BY how_paid ASC;");
+$payment_method = $pdo->prepare("SELECT how_paid FROM payment_method WHERE is_used IS NULL ORDER BY how_paid ASC;");
 $payment_method->execute();
 ?>
 

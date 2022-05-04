@@ -28,7 +28,7 @@ $choose_expense->execute(['exp_cat' => $category]);
 $yearly_expense = $pdo->prepare("SELECT expense_name FROM expense_categories WHERE payment_frequency::integer = 1 ORDER BY expense_name;");
 $yearly_expense->execute();
 
-$cc_charges = $pdo->prepare("SELECT how_paid, payment_type FROM payment_method ORDER BY how_paid;");
+$cc_charges = $pdo->prepare("SELECT how_paid, payment_type FROM payment_method WHERE is_used IS NULL ORDER BY how_paid;");
 $cc_charges->execute();
 
 ?>
