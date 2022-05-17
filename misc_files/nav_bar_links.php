@@ -72,6 +72,7 @@ $month_year = date('F Y', strtotime('now'));
       <a href='../usd/buy_usd.php'>Buy USD</a>
       <a href='../usd/sell_usd.php'>Sell USD</a>
       <a href='../usd/interest_usd.php'>Interest Earned</a>
+      <a href='../usd/usd_historical.php'>Hisorical Buys</a>
     </div>
   </div>
   <a style="color:#FFFFFF" ; text-decoration="none" ; href='..'>Main Page</a>

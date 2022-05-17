@@ -92,6 +92,11 @@ body {
   padding-top: 3.5rem;
 }
 
+.hist_buy {
+  grid-area: 1 / 1;
+  padding-top: 3.5rem;
+}
+
 table {
   border: 0rem;
   border-collapse: collapse;

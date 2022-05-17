@@ -4,15 +4,7 @@
 <link rel='stylesheet' type='text/css' href='../css/usd_values.css' />
 <title>USD Interest</title>
 
-<?php
-include '../db_connections/connection_pdo.php';
-
-$usd_value = $pdo->prepare("SELECT SUM(COALESCE(buy_amt,0)) AS buy_amt, 
-                                   SUM(COALESCE(withdrawls,0) + COALESCE(usd_value,0) + COALESCE(interest,0)) AS net_usd, 
-                                   ROUND(AVG(exch_rate), 4) AS avg_exch,
-                                   SUM(COALESCE(interest,0)) AS interest
-                            FROM usd_acct;");
-?>
+<?php include '../db_connections/connection_pdo.php'; ?>
 
 <div class="grid-container">
 
@@ -29,6 +21,7 @@ include '../misc_files/nav_bar_links.php';
 
 <form name="display" action="" method="POST">
     <div class="grid-container_bottom">
+
         <div class="item3">
             <h2>Interest Earned</h2>
             <input id="textboxid" name="interest_earned" placeholder="Interest Earned" type="text" />
