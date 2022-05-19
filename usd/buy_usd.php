@@ -93,6 +93,6 @@ if (isset($_POST['buy_usd'])) {
                                       VALUES ('US Dollar Buy', :buy_amt, 'Investment', 'Fixed', 'Interact Transfer', :pay_date, :note);");
     $update_expenses->execute(['buy_amt' => $cdn_amount, 'pay_date' => $date, 'note' => 'Exch. Rate: ' . $exch_rate]);
 
-    echo "<script> window.location.href='..' </script>";
+    echo "<script> window.location.href='usd_historical.php' </script>";
 }
 ?>
