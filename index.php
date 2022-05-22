@@ -50,6 +50,7 @@ $month_year = date('F Y', strtotime('now'));
       <a href='transactions/expense.php?exp=Leisure'>Leisure</a>
       <a href='transactions/expense.php?exp=Loan'>Loans</a>
       <a href='transactions/expense.php?exp=Other'>Misc. Expenses</a>
+      <a href='transactions/not_expenses.php'>Non Expense Charges</a>
       <a href='transactions/expense.php?exp=Transportation'>Transportation</a>
       <a href='transactions/expense.php?exp=Utilities'>Utilities</a>
       <a href='transactions/expense.php?exp=Yearly'>Yearly Charges</a>
