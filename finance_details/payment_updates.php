@@ -18,13 +18,6 @@ $get_payment = $pdo->prepare("SELECT how_paid FROM payment_method ORDER BY how_p
 $get_payment->execute();
 
 ?>
-<?php
-$projections = $pdo->prepare("SELECT item_purchased, amount, purchase_date, paid_by, note
-                              FROM expenses
-                              WHERE purchase_date < CURRENT_DATE AND purchase_date > CURRENT_DATE - 45
-                              ORDER BY purchase_date DESC, amount DESC;");
-$projections->execute();
-?>
 
 <!-- Get Payment Method -->
 <form name="display" action="" method="POST">
