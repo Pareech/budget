@@ -38,7 +38,6 @@ $month_year = date('F Y', strtotime('now'));
       <a href='../transactions/expense.php?exp=Leisure'>Leisure</a>
       <a href='../transactions/expense.php?exp=Loan'>Loans</a>
       <a href='../transactions/expense.php?exp=Other'>Misc. Expenses</a>
-      <a href='../transactions/not_expenses.php'>Non Expense Charges</a>
       <a href='../transactions/expense.php?exp=Transportation'>Transportation</a>
       <a href='../transactions/expense.php?exp=Utilities'>Utilities</a>
       <a href='../transactions/expense.php?exp=Yearly'>Yearly Charges</a>
@@ -53,6 +52,13 @@ $month_year = date('F Y', strtotime('now'));
     </div>
   </div>
   <div class="dropdown">
+    <button style="color:#87CEEB" class="dropbtn">Non Expenses</button>
+    <div class="dropdown-content">
+      <a href='../finance_details/not_expenses_updates.php'>Modify a Non-Payment Entry</a>
+      <a href='../transactions/not_expenses.php'>Non-Expense Charges</a>
+    </div>
+  </div>
+  <div class="dropdown">
     <button style="color:#FFFF00" class="dropbtn">Transfers</button>
     <div class="dropdown-content">
       <a href='../transactions/money_trsf.php?who=Ian'>Ian</a>
@@ -64,7 +70,7 @@ $month_year = date('F Y', strtotime('now'));
     <div class="dropdown-content">
       <a href='../finance_details/enter_month_start.php'>Enter Month Starting Value</a>
       <a href='../finance_details/payment_updates.php'>Modify a Payment Entry</a>
-      <a href='../projections/update_monthly_projection.php'>Update Monthly Projections</a>
+        <a href='../projections/update_monthly_projection.php'>Update Monthly Projections</a>
     </div>
   </div>
   <div class="dropdown">
