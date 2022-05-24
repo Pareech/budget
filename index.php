@@ -56,16 +56,16 @@ $month_year = date('F Y', strtotime('now'));
     </div>
   </div>
   <div class="dropdown">
-    <button style="color:#FFFF00" class="dropbtn">Income</button>
+    <button style="color:#87CEEB" class="dropbtn">Holding Account</button>
     <div class="dropdown-content">
-      <a href='transactions/deposit.php'>Deposit</a>
+      <a href='transactions/holding_account.php'>Enter Holding Account Charge</a>
+      <a href='finance_details/holding_acct_updates.php'>Modify Holding Account Entry</a>
     </div>
   </div>
   <div class="dropdown">
-    <button style="color:#87CEEB" class="dropbtn">Non Expenses</button>
+    <button style="color:#FFFF00" class="dropbtn">Income</button>
     <div class="dropdown-content">
-      <a href='finance_details/not_expenses_updates.php'>Modify a Non-Payment Entry</a>
-      <a href='transactions/not_expenses.php'>Non-Expense Charges</a>
+      <a href='transactions/deposit.php'>Deposit</a>
     </div>
   </div>
   <div class="dropdown">

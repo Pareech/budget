@@ -2,10 +2,10 @@
 
 <meta http-equiv="Content-Type" content="text/html;" />
 <link rel='stylesheet' type='text/css' href='../css/transaction.css' />
-<title>Enter Non-Expenses</title>
+<title>Enter Holding Account Expenses</title>
 
 <div class='header'>
-    <h1>Enter<br>Non-Expenses</h1>
+    <h1>Enter Holding<br>Account Expenses</h1>
 </div>
 
 <?php
@@ -79,7 +79,7 @@ if (isset($_POST['submit_expense'])) {
         $date = $due_date = $_POST['date'];
         $note = $_POST['note'];
 
-        $spend = $pdo->prepare("INSERT INTO not_expenses (not_exp_source, not_exp_cc, not_exp_amount, not_exp_date, not_exp_note)
+        $spend = $pdo->prepare("INSERT INTO holding_acct (hold_acct_source, hold_acct_cc, hold_acct_amount, hold_acct_date, hold_acct_note)
                                 VALUES (:exp_source, :cc, :cost, :expense_date, :note);");
         $spend->execute(['exp_source'=>$charge_source,'cc' => $card_used, 'cost' => $cost, 'expense_date' => $date, 'note' => $note]);
 

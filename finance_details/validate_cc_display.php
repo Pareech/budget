@@ -44,9 +44,9 @@ $cc_sum = $cc_charges->fetchColumn() ?? 0;
 
 
 // Sum all charges that should not count as an expense for a credit card period
-$cc_not_charges = $pdo->prepare("SELECT sum(not_exp_amount)
-                                 FROM not_expenses
-                                 WHERE (not_exp_date, not_exp_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND not_exp_cc = :cc;");
+$cc_not_charges = $pdo->prepare("SELECT sum(hold_acct_amount)
+                                 FROM holding_acct
+                                 WHERE (hold_acct_date, hold_acct_date) OVERLAPS (:startDate::DATE, :endDate::DATE) AND hold_acct_cc = :cc;");
 $cc_not_charges->execute(['cc' => $cc, 'startDate' => $start_date, 'endDate' => $end_date]);
 $non_charges = $cc_not_charges->fetchColumn() ?? 0;
 
@@ -63,10 +63,10 @@ $non_charges = $money->formatCurrency($non_charges, 'USD');
         <table class='table'>
             <tr>
                 <th colspan="3" ; class='heading'>
-                    <?php echo $cc . "<br>Credit Card Totals: " . $cc_total; ?>
+                    <?php echo"Credit Card<br>Totals: " . $cc_total; ?>
                 </th>
                 <th class='heading'>
-                    <?php echo "My Expenses: " . $cc_sum . "<br>Non Expenses: " . $non_charges; ?>
+                    <?php echo "My Expenses: " . $cc_sum . "<br>Holding Account: " . $non_charges; ?>
                 </th>
             </tr>
             <tr>
@@ -109,7 +109,7 @@ $non_charges = $money->formatCurrency($non_charges, 'USD');
             ?>
 
             <tr>
-                <td style="border-top-width:8px"> Non-Expenses </td>
+                <td style="border-top-width:8px"> Holding Account </td>
                 <td style="border-top-width:8px"> <?php echo $non_charges ?> </td>
             </tr>
         </table>

@@ -2,10 +2,10 @@
 
 <meta name="viewport" http-equiv="Content-Type" content="text/html, width=device-width, initial-scale=1;" />
 <link rel='stylesheet' type='text/css' href='../css/payment_updates.css' />
-<title>Update Non-Personal Expenses Entered</title>
+<title>Update Holding Account Expenses Entered</title>
 
 <div class='header'>
-    <h1>Update Entered</br>Non Personal Expenses</h1>
+    <h1>Update Entered</br>Holding Account Expenses</h1>
 </div>
 
 
@@ -48,11 +48,11 @@ $get_payment->execute();
             </div>
 
             <?php
-            $list_payments = $pdo->prepare("SELECT not_exp_pk, not_exp_source, not_exp_cc, not_exp_amount, not_exp_date, not_exp_note
-                                            FROM not_expenses
-                                                WHERE not_exp_date <= CURRENT_DATE AND not_exp_date >= CURRENT_DATE - 45 
-                                                AND not_exp_cc = :cc_used
-                                            ORDER BY not_exp_date desc, not_exp_amount DESC;");
+            $list_payments = $pdo->prepare("SELECT hold_acct_pk, hold_acct_source, hold_acct_cc, hold_acct_amount, hold_acct_date, hold_acct_note
+                                            FROM holding_acct
+                                                WHERE hold_acct_date <= CURRENT_DATE AND hold_acct_date >= CURRENT_DATE - 45 
+                                                AND hold_acct_cc = :cc_used
+                                            ORDER BY hold_acct_date desc, hold_acct_amount DESC;");
             $list_payments->execute(['cc_used' => $cc_used]);
 
             $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
@@ -78,16 +78,16 @@ $get_payment->execute();
                 <?php
                 foreach ($list_payments as $row) {
                     echo "<tr>";
-                        echo "<input type='hidden' name='primary_key[]' value='" . $row['not_exp_pk'] . "'>";
-                        echo "<td>" . date('d-M', strtotime($row['not_exp_date'])) . "</td>";
-                        echo "<input type='hidden' name='purchase_date[]' value='" . $row['not_exp_date'] . "'>";
-                        echo "<td>" . $row['not_exp_source'] . "</td>";
-                        echo "<td>" . $money->formatCurrency($row['not_exp_amount'], 'USD')  . "</td>";
-                        echo "<input type='hidden' name='payment_amount[]' value='" . $row['not_exp_amount'] . "'>";
-                        echo "<td>" . $row['not_exp_note']  . "</td>";
-                        echo "<td style='background-color:#000000 ; width:0.063rem;'></td><";
-                        echo "td> <center><input id='textboxid' name='corrected_date[]' placeholder='Date Correction' type='date' /></center> </td>";
-                        echo "<td> <center><input id='textboxid' name='corrected_amount[]' placeholder='Correct Amount' type='text' /></center> </td>";
+                    echo "<input type='hidden' name='primary_key[]' value='" . $row['hold_acct_pk'] . "'>";
+                    echo "<td>" . date('d-M', strtotime($row['hold_acct_date'])) . "</td>";
+                    echo "<input type='hidden' name='purchase_date[]' value='" . $row['hold_acct_date'] . "'>";
+                    echo "<td>" . $row['hold_acct_source'] . "</td>";
+                    echo "<td>" . $money->formatCurrency($row['hold_acct_amount'], 'USD')  . "</td>";
+                    echo "<input type='hidden' name='payment_amount[]' value='" . $row['hold_acct_amount'] . "'>";
+                    echo "<td>" . $row['hold_acct_note']  . "</td>";
+                    echo "<td style='background-color:#000000 ; width:0.063rem;'></td><";
+                    echo "td> <center><input id='textboxid' name='corrected_date[]' placeholder='Date Correction' type='date' /></center> </td>";
+                    echo "<td> <center><input id='textboxid' name='corrected_amount[]' placeholder='Correct Amount' type='text' /></center> </td>";
                     echo "</tr>";
                 }
             }
@@ -124,10 +124,10 @@ if (isset($_POST['update_payments'])) {
                 $amount = $corrected_amount[$i];
             }
 
-            $update_expenses = $pdo->prepare("UPDATE not_expenses 
-                                              SET not_exp_date = :purchase_date,
-                                                  not_exp_amount = :amount_due
-                                              WHERE not_exp_pk = :pk;");
+            $update_expenses = $pdo->prepare("UPDATE holding_acct 
+                                              SET hold_acct_date = :purchase_date,
+                                                  hold_acct_amount = :amount_due
+                                              WHERE hold_acct_pk = :pk;");
             $update_expenses->execute(['purchase_date' => $date, 'amount_due' => $amount, 'pk' => $primary_key[$i]]);
         }
     }
