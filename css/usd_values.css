@@ -127,10 +127,11 @@ table.table_exch {
   border: 0.125rem solid #000000;
 }
 
-th.row {
+th.row, td.row {
   padding: 0.625rem;
   border: 0.125rem solid #000000;
   background-color: #eee8aa;
+  font-weight: bold;
 }
 
 #transaction_button {
