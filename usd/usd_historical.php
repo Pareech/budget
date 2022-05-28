@@ -28,9 +28,9 @@ include '../misc_files/nav_bar_links.php';
                 </th>
             </tr>
             <tr>
-                <th class="row">Date</th>
-                <th class="row">Exch. Rate</th>
-                <th class="row">Bought</th>
+                <td class="row">Date</td>
+                <td class="row">Exch. Rate</td>
+                <td class="row">Bought</td>
             </tr>
 
             <?php
