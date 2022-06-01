@@ -7,7 +7,7 @@
             // Value of USD Account and Canadian dollars exchanged
             $usd_value = $pdo->prepare("SELECT SUM(COALESCE(buy_amt,0)) AS buy_amt, 
                                                SUM(COALESCE(withdrawls,0) + COALESCE(usd_value,0) + COALESCE(interest,0)) AS net_usd, 
-                                               ROUND(AVG(exch_rate), 4) AS avg_exch,
+                                               ROUND(SUM(buy_amt) / (SUM(usd_value) + SUM(COALESCE(interest,0))),4) AS avg_exch,
                                                SUM(COALESCE(interest,0)) AS interest
                                         FROM usd_acct;");
 
@@ -30,11 +30,9 @@
             $last_ten->execute();
 
 
-
             $money = new NumberFormatter('en', NumberFormatter::CURRENCY);
 
             // Get Current USD Values
-
             $usd_value->execute();
             foreach ($usd_value as $row) {
                 $buy_amount = $row['buy_amt'];
