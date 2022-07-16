@@ -27,6 +27,8 @@ h2 {
   column-gap: 3.813rem;
   padding-top: 2.188rem;
   justify-content: center;
+  /* margin-left: 7rem; */
+  /* margin-right: 30%; */
   text-align: center;
 }
 
@@ -83,7 +85,8 @@ table {
   table-layout: center;
   text-align: center;
   background-color: #FFFFFF;
-  width: 59.375rem;
+  /* width: 59.375rem; */
+  width: auto;
 }
 
 th {
